@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(
+      theme: ThemeData.light(
         useMaterial3: true,
       ),
       home: DisplayMetricsWidget(
@@ -187,7 +187,7 @@ class _RulerWidgetState extends State<RulerWidget> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.black,
+                color: Colors.grey.shade200,
               ),
               padding: const EdgeInsets.all(8),
               child: Row(
@@ -281,10 +281,11 @@ class Ruler extends StatelessWidget {
               color: Colors.purple.shade300,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 4),
-            child: Text(label),
-          ),
+          if (height != 0)
+            Padding(
+              padding: const EdgeInsets.only(left: 4),
+              child: Text(label),
+            ),
         ],
       ),
     );

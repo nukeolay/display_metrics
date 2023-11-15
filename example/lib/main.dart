@@ -15,10 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark(
+        useMaterial3: true,
+      ),
       home: DisplayMetricsWidget(
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Display metrics example app'),
+            centerTitle: true,
           ),
           body: const BodyWidget(),
         ),
@@ -41,7 +45,6 @@ class BodyWidget extends StatelessWidget {
     return Column(
       children: [
         DisplayInfoWidget(metrics: metrics),
-        const Divider(),
         const Expanded(child: RulerWidget()),
       ],
     );
@@ -61,17 +64,61 @@ class DisplayInfoWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('devicePixelRatio: ${metrics?.devicePixelRatio}'),
-            Text(
-                'inchToPixelRatio: ${metrics?.inchesToPixelRatio.toStringAsFixed(0)}'),
-            Text('ppi: ${metrics?.ppi.toStringAsFixed(0)}'),
-            Text('diagonal (inches): ${metrics?.diagonal.toStringAsFixed(2)}'),
-            Text(
-                'physicalSize (inches): ${metrics?.physicalSize.width.toStringAsFixed(2)} x ${metrics?.physicalSize.height.toStringAsFixed(2)}'),
-            Text(
-                'resolution (pixels): ${metrics?.resolution.width.toStringAsFixed(0)} x ${metrics?.resolution.height.toStringAsFixed(0)}'),
+            MetricsLabel(
+              title: 'devicePixelRatio',
+              value: '${metrics?.devicePixelRatio.toStringAsFixed(0)}',
+            ),
+            MetricsLabel(
+              title: 'inchToPixelRatio',
+              value: '${metrics?.inchesToPixelRatio.toStringAsFixed(0)}',
+            ),
+            MetricsLabel(
+              title: 'ppi',
+              value: '${metrics?.ppi.toStringAsFixed(0)}',
+            ),
+            MetricsLabel(
+              title: 'diagonal (inches)',
+              value: '${metrics?.diagonal.toStringAsFixed(2)}',
+            ),
+            MetricsLabel(
+              title: 'physicalSize (inches)',
+              value:
+                  '${metrics?.physicalSize.width.toStringAsFixed(2)} x ${metrics?.physicalSize.height.toStringAsFixed(2)}',
+            ),
+            MetricsLabel(
+              title: 'resolution (pixels)',
+              value:
+                  '${metrics?.resolution.width.toStringAsFixed(0)} x ${metrics?.resolution.height.toStringAsFixed(0)}',
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MetricsLabel extends StatelessWidget {
+  const MetricsLabel({
+    required this.title,
+    required this.value,
+    super.key,
+  });
+
+  final String title;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        text: '$title: ',
+        style: DefaultTextStyle.of(context).style,
+        children: [
+          TextSpan(
+            text: value,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }
@@ -131,28 +178,40 @@ class _RulerWidgetState extends State<RulerWidget> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                UnitSelector(
-                  value: RulerUnits.inches,
-                  selectedValue: _selectedUnits,
-                  onChange: _updateSelector,
-                ),
-                UnitSelector(
-                  value: RulerUnits.cm,
-                  selectedValue: _selectedUnits,
-                  onChange: _updateSelector,
-                ),
-                Expanded(
-                  child: RulerSlider(
-                    length: _sliderValue,
-                    maxLength: _maxSliderValue,
-                    onChange: _updateSliderValue,
+            padding: const EdgeInsets.only(
+              top: 0,
+              bottom: 8,
+              left: 8,
+              right: 8,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.black,
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  UnitSelector(
+                    value: RulerUnits.inches,
+                    selectedValue: _selectedUnits,
+                    onChange: _updateSelector,
                   ),
-                ),
-              ],
+                  UnitSelector(
+                    value: RulerUnits.cm,
+                    selectedValue: _selectedUnits,
+                    onChange: _updateSelector,
+                  ),
+                  Expanded(
+                    child: RulerSlider(
+                      length: _sliderValue,
+                      maxLength: _maxSliderValue,
+                      onChange: _updateSliderValue,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -214,7 +273,13 @@ class Ruler extends StatelessWidget {
           Container(
             height: height,
             width: 50,
-            color: Colors.blue,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              ),
+              color: Colors.purple.shade300,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 4),

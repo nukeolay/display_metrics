@@ -1,0 +1,39 @@
+PODS:
+  - display_metrics (0.0.1):
+    - Flutter
+    - UIScreenExtension
+  - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - UIScreenExtension (0.0.11)
+
+DEPENDENCIES:
+  - display_metrics (from `.symlinks/plugins/display_metrics/ios`)
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - UIScreenExtension (from `https://github.com/marchv/UIScreenExtension`)
+
+EXTERNAL SOURCES:
+  display_metrics:
+    :path: ".symlinks/plugins/display_metrics/ios"
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  UIScreenExtension:
+    :git: https://github.com/marchv/UIScreenExtension
+
+CHECKOUT OPTIONS:
+  UIScreenExtension:
+    :commit: b3bc0fbeb2b0d3a6fb74d1161e1ce9d99f3c070e
+    :git: https://github.com/marchv/UIScreenExtension
+
+SPEC CHECKSUMS:
+  display_metrics: eb64dedaa9965cbf20be768186ae9f12f0858fb6
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  integration_test: 13825b8a9334a850581300559b8839134b124670
+  UIScreenExtension: 32648de7d58896d842a803d70e70665a8d729d3c
+
+PODFILE CHECKSUM: 808129bee7e30c3d3eab4d5ffca42d55d69213e4
+
+COCOAPODS: 1.13.0

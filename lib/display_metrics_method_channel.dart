@@ -10,8 +10,26 @@ class MethodChannelDisplayMetrics extends DisplayMetricsPlatform {
   final methodChannel = const MethodChannel('display_metrics');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<Size?> getSize() async {
+    final size =
+        await methodChannel.invokeMethod<Map<Object?, Object?>>('getSize');
+    return switch (size) {
+      {"Width": 0 as num, "Height": 0 as num} => null,
+      {"Width": final num width, "Height": final num height} =>
+        Size(width.toDouble(), height.toDouble()),
+      _ => null
+    };
+  }
+
+  @override
+  Future<Size?> getResolution() async {
+    final size = await methodChannel
+        .invokeMethod<Map<Object?, Object?>>('getResolution');
+    return switch (size) {
+      {"Width": 0 as num, "Height": 0 as num} => null,
+      {"Width": final num width, "Height": final num height} =>
+        Size(width.toDouble(), height.toDouble()),
+      _ => null
+    };
   }
 }

@@ -14,8 +14,8 @@ class MethodChannelDisplayMetrics extends DisplayMetricsPlatform {
     final size =
         await methodChannel.invokeMethod<Map<Object?, Object?>>('getSize');
     return switch (size) {
-      {"Width": 0 as num, "Height": 0 as num} => null,
-      {"Width": final num width, "Height": final num height} =>
+      {"width": 0, "height": 0} => null,
+      {"width": final num width, "height": final num height} =>
         Size(width.toDouble(), height.toDouble()),
       _ => null
     };
@@ -26,8 +26,8 @@ class MethodChannelDisplayMetrics extends DisplayMetricsPlatform {
     final size = await methodChannel
         .invokeMethod<Map<Object?, Object?>>('getResolution');
     return switch (size) {
-      {"Width": 0 as num, "Height": 0 as num} => null,
-      {"Width": final num width, "Height": final num height} =>
+      {"width": 0, "height": 0} => null,
+      {"width": final num width, "height": final num height} =>
         Size(width.toDouble(), height.toDouble()),
       _ => null
     };

@@ -13,14 +13,14 @@ public class DisplayMetricsPlugin: NSObject, FlutterPlugin {
         let screenRect = UIScreen.dimensionInInches
         let screenWidth = screenRect?.width
         let screenHeight = screenRect?.height
-        return ["Width": screenWidth ?? 0, "Height": screenHeight ?? 0]
+        return ["width": screenWidth ?? 0, "height": screenHeight ?? 0]
     }
     
     func getResolution() -> [String: CGFloat] {
         let screenRect = UIScreen.main.nativeBounds
         let screenWidth = screenRect.size.width
         let screenHeight = screenRect.size.height
-        return ["Width": screenWidth, "Height": screenHeight]
+        return ["width": screenWidth, "height": screenHeight]
     }
     
     

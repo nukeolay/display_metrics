@@ -70,12 +70,12 @@ class DisplayMetricsPlugin: FlutterPlugin, MethodCallHandler {
 
       "getSize" -> {
         val size = getSize()
-        result.success(mapOf("Width" to size.first, "Height" to size.second))
+        result.success(mapOf("width" to size.first, "height" to size.second))
       }
 
       "getResolution" -> {
         val resolution = getResolution()
-        result.success(mapOf("Width" to resolution.first, "Height" to resolution.second))
+        result.success(mapOf("width" to resolution.first, "height" to resolution.second))
       }
 
       else -> result.notImplemented()

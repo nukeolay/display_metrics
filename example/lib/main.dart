@@ -5,15 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:display_metrics/display_metrics.dart';
-import 'package:display_metrics/data.dart';
-import 'package:display_metrics/extension.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ExampleApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ExampleApp extends StatelessWidget {
+  const ExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,16 +82,16 @@ class DisplayInfoWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MetricsLabel(
+              title: 'ppi',
+              value: '${metrics?.ppi.toStringAsFixed(0)}',
+            ),
+            MetricsLabel(
               title: 'devicePixelRatio',
               value: '${metrics?.devicePixelRatio.toStringAsFixed(0)}',
             ),
             MetricsLabel(
-              title: 'inchToPixelRatio',
-              value: '${metrics?.inchesToPixelRatio.toStringAsFixed(0)}',
-            ),
-            MetricsLabel(
-              title: 'ppi',
-              value: '${metrics?.ppi.toStringAsFixed(0)}',
+              title: 'inchesToLogicalPixelRatio',
+              value: '${metrics?.inchesToLogicalPixelRatio.toStringAsFixed(0)}',
             ),
             MetricsLabel(
               title: 'diagonal (inches)',

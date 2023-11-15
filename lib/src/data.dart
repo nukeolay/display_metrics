@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
+import 'package:flutter/widgets.dart';
+
 class DisplayMetricsData {
   const DisplayMetricsData({
     required this.physicalSize,
@@ -8,20 +10,28 @@ class DisplayMetricsData {
     required this.devicePixelRatio,
   });
 
+  /// Device's screen physical size in inches
   final Size physicalSize;
-  final Size resolution;
-  final double devicePixelRatio;
 
+  /// Device's screen resolution in real pixels
+  final Size resolution;
+
+  /// Device's screen diagonal in inches
   double get diagonal =>
       _calculateDiagonal(physicalSize.width, physicalSize.height);
 
+  /// Device's screen pixels per inch (PPI)
   double get ppi {
     final pixelDiagonal =
         _calculateDiagonal(resolution.width, resolution.height);
     return pixelDiagonal / diagonal;
   }
 
-  double get inchesToPixelRatio => ppi / devicePixelRatio;
+  /// The number of logical pixels on the device's screen that corresponds to one inch
+  double get inchesToLogicalPixelRatio => ppi / devicePixelRatio;
+
+  /// MediaQuery's devicePixelRatio;
+  final double devicePixelRatio;
 
   double _calculateDiagonal(double width, double height) => math.sqrt(
         math.pow(width, 2) + math.pow(height, 2),

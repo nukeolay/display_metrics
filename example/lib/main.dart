@@ -1,3 +1,6 @@
+// This Flutter app demonstrates how to use the display_metrics package
+// to access display metrics and convert between logical pixels and real world units.
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -18,6 +21,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(
         useMaterial3: true,
       ),
+      // add DisplayMetricsWidget to Widget tree under MaterialApp to use
+      // DisplayMetrics.of(context) and BuildContext extension methods
       home: DisplayMetricsWidget(
         child: Scaffold(
           appBar: AppBar(
@@ -36,6 +41,8 @@ class BodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // call DisplayMetrics.maybeOf(context) or DisplayMetrics.of(context)
+    // to get DisplayMetricsData
     final metrics = DisplayMetrics.maybeOf(context);
     if (metrics == null) {
       return const Center(
@@ -43,8 +50,20 @@ class BodyWidget extends StatelessWidget {
       );
     }
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DisplayInfoWidget(metrics: metrics),
+        RealWidthWidget(
+          label: 'real 1 inch',
+          // call context.inchesToPixels(inches) to convert inches into logical pixels
+          width: context.inchesToPixels(1),
+        ),
+        RealWidthWidget(
+          label: 'real 1 cm',
+          // call context.cmToPixels(cm) to convert centimeters into logical pixels
+          width: context.cmToPixels(1),
+        ),
+        const SizedBox(height: 8),
         const Expanded(child: RulerWidget()),
       ],
     );
@@ -60,7 +79,7 @@ class DisplayInfoWidget extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -97,6 +116,30 @@ class DisplayInfoWidget extends StatelessWidget {
   }
 }
 
+class RealWidthWidget extends StatelessWidget {
+  const RealWidthWidget({required this.label, required this.width, super.key});
+  final String label;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        children: [
+          Text(label),
+          const Icon(Icons.keyboard_double_arrow_right_rounded, size: 16),
+          Container(
+            width: width,
+            height: 2,
+            color: _accentColor,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class MetricsLabel extends StatelessWidget {
   const MetricsLabel({
     required this.title,
@@ -116,7 +159,10 @@ class MetricsLabel extends StatelessWidget {
         children: [
           TextSpan(
             text: value,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: _accentColor,
+            ),
           ),
         ],
       ),
@@ -164,7 +210,9 @@ class _RulerWidgetState extends State<RulerWidget> {
 
   double _convertPixels(double pixels) {
     return _selectedUnits == RulerUnits.inches
+        // call context.pixelsToInches(pixels) to convert logical pixels into inches
         ? context.pixelsToInches(pixels.toInt())
+        // call context.pixelsToCm(pixels) to convert logical pixels into centimeters
         : context.pixelsToCm(pixels.toInt());
   }
 
@@ -278,7 +326,7 @@ class Ruler extends StatelessWidget {
                 topRight: Radius.circular(8),
                 bottomRight: Radius.circular(8),
               ),
-              color: Colors.purple.shade300,
+              color: _accentColor,
             ),
           ),
           if (height != 0)
@@ -315,3 +363,5 @@ class RulerSlider extends StatelessWidget {
 }
 
 enum RulerUnits { inches, cm }
+
+Color _accentColor = const Color(0xFF381E72);

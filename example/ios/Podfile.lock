@@ -1,5 +1,5 @@
 PODS:
-  - display_metrics (0.0.1):
+  - display_metrics (0.1.0):
     - Flutter
     - UIScreenExtension
   - Flutter (1.0.0)
@@ -29,7 +29,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/marchv/UIScreenExtension
 
 SPEC CHECKSUMS:
-  display_metrics: eb64dedaa9965cbf20be768186ae9f12f0858fb6
+  display_metrics: bc0a05e23f5c8458ba7bdc6b8e868cc2b0e83588
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   integration_test: 13825b8a9334a850581300559b8839134b124670
   UIScreenExtension: 32648de7d58896d842a803d70e70665a8d729d3c

@@ -1,3 +1,7 @@
+## 0.1.3
+
+README.md updated
+
 ## 0.1.2
 
 Fixed iOS dependency error issue

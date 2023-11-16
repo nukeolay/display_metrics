@@ -10,11 +10,12 @@
 **/.vagrant/
 **/DerivedData/
 Icon?
-**/Pods/Headers
-**/Pods/Local Podspecs
-**/Pods/Pods.xcodeproj
-**/Pods/Target Support Files
-**/Pods/Manifest.lock
+**/Pods/
+# **/Pods/Headers
+# **/Pods/Local Podspecs
+# **/Pods/Pods.xcodeproj
+# **/Pods/Target Support Files
+# **/Pods/Manifest.lock
 **/.symlinks/
 profile
 xcuserdata

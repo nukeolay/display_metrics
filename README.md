@@ -96,3 +96,7 @@ context.pixelsToInches(int pixels);
 // Converts Flutter logical pixels into centimeters
 context.pixelsToCm(int pixels);
 ```
+
+## Credits
+
+iOS implementation uses Jens Schwarzer's UIScreenExtension (https://github.com/marchv/UIScreenExtension)

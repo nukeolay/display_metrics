@@ -2,8 +2,6 @@
 
 Flutter plugin that provides display metrics such as real screen resolution, physical display size, ppi, diagonal. Also it contains BuildContext extension to transform inches & centimeters into Flutter logical pixels.
 
-*Does not work on iOS versions below 13
-
 ## Features
 
 * Get real screen resolution, display size (inches) and PPI

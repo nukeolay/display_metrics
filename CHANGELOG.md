@@ -1,3 +1,7 @@
+## 0.1.2
+
+Fixed iOS dependency error issue
+
 ## 0.1.1
 
 README.md updated

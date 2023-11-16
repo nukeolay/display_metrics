@@ -1,6 +1,5 @@
 import Flutter
 import UIKit
-import UIScreenExtension
 
 public class DisplayMetricsPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {

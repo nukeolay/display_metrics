@@ -86,15 +86,15 @@ metrics.devicePixelRatio => double
 ### Convert units
 To convert inches and centimeters into Flutter logical pixels and vice versa you can call one of BuildCOntext extension methods:
 ```dart
-  /// Converts inches to Flutter logical pixels
-  context.inchesToPixels(double inches);
+// Converts inches to Flutter logical pixels
+context.inchesToPixels(double inches);
 
-  /// Converts centimeters to Flutter logical pixels
-  context.cmToPixels(double cm);
+// Converts centimeters to Flutter logical pixels
+context.cmToPixels(double cm);
 
-  /// Converts Flutter logical pixels into inches
-  context.pixelsToInches(int pixels);
+// Converts Flutter logical pixels into inches
+context.pixelsToInches(int pixels);
 
-  /// Converts Flutter logical pixels into centimeters
-  context.double pixelsToCm(int pixels);
+// Converts Flutter logical pixels into centimeters
+context.pixelsToCm(int pixels);
 ```

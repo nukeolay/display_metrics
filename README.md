@@ -13,7 +13,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  display_metrics: ^0.1.3
+  display_metrics: ^0.1.4
 ```
 
 In your library add the following import:
@@ -30,14 +30,14 @@ class ExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.light(
-        useMaterial3: true,
-      ),
-      // add DisplayMetricsWidget to Widget tree under MaterialApp to use
-      // DisplayMetrics.of(context) and BuildContext extension methods
-      home: DisplayMetricsWidget(
-        child: Scaffold(
+    // add DisplayMetricsWidget to Widget tree above MaterialApp to use
+    // DisplayMetrics.of(context) and BuildContext extension methods
+    return DisplayMetricsWidget(
+      child: MaterialApp(
+        theme: ThemeData.light(
+          useMaterial3: true,
+        ),
+        home: Scaffold(
           appBar: AppBar(
             title: const Text('Display metrics example app'),
             centerTitle: true,
@@ -49,6 +49,8 @@ class ExampleApp extends StatelessWidget {
   }
 }
 ```
+![Example app](example/example.png)
+
 ## Usage
 
 ### DisplayMetricsData

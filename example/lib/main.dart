@@ -15,14 +15,14 @@ class ExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.light(
-        useMaterial3: true,
-      ),
-      // add DisplayMetricsWidget to Widget tree under MaterialApp to use
-      // DisplayMetrics.of(context) and BuildContext extension methods
-      home: DisplayMetricsWidget(
-        child: Scaffold(
+    // add DisplayMetricsWidget to Widget tree above MaterialApp to use
+    // DisplayMetrics.of(context) and BuildContext extension methods
+    return DisplayMetricsWidget(
+      child: MaterialApp(
+        theme: ThemeData.light(
+          useMaterial3: true,
+        ),
+        home: Scaffold(
           appBar: AppBar(
             title: const Text('Display metrics example app'),
             centerTitle: true,

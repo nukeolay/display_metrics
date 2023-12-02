@@ -1,3 +1,7 @@
+## 0.1.5
+
+Added example app image
+
 ## 0.1.4
 
 Example app updated

@@ -13,7 +13,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  display_metrics: ^0.1.4
+  display_metrics: ^0.1.5
 ```
 
 In your library add the following import:
@@ -49,7 +49,7 @@ class ExampleApp extends StatelessWidget {
   }
 }
 ```
-![Example app](example/example.png)
+![Example app](https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example.png)
 
 ## Usage
 

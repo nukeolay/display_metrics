@@ -1,6 +1,6 @@
 name: display_metrics
 description: Flutter plugin to retrieve device display metrics (resolution, size, PPI, diagonal). Convert inches & cm to Flutter logical pixels.
-version: 0.1.5
+version: 0.2.0
 homepage: https://github.com/nukeolay/display_metrics
 
 environment:

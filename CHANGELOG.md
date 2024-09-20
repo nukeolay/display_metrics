@@ -1,3 +1,8 @@
+## 0.3.0
+* Added *mmToPixels(mm)* & *pixelsToMm(pixels)* methods
+* *cmToPixels* & *pixelsToCm* are deprecated (use *mmToPixels* & *pixelsToMm* instead)
+* Added *updateSizeOnRotate* to **DisplayMetricsWidget**. If you need to update size when orientation of your device changes set updateSizeOnRotate to 'true'
+
 ## 0.2.0
 * Added 2024 iOS devices support:
   * iPhone 16

@@ -1,11 +1,11 @@
 # display_metrics
 
-Flutter plugin that provides display metrics such as real screen resolution, physical display size, ppi, diagonal. Also it contains BuildContext extension to transform inches & centimeters into Flutter logical pixels.
+Flutter plugin that provides display metrics such as real screen resolution, physical display size, ppi, diagonal. Also it contains BuildContext extension to transform inches & millimeters into Flutter logical pixels.
 
 ## Features
 
 * Get real screen resolution, display size (inches) and PPI
-* Convert inches and centimeters into Flutter logical pixels
+* Convert inches and millimeters into Flutter logical pixels
 
 ## Install
 
@@ -13,7 +13,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  display_metrics: ^0.2.0
+  display_metrics: ^0.3.0
 ```
 
 In your library add the following import:
@@ -84,20 +84,23 @@ metrics.devicePixelRatio => double
 ```
 
 ### Convert units
-To convert inches and centimeters into Flutter logical pixels and vice versa you can call one of BuildContext extension methods:
+To convert inches and millimeters into Flutter logical pixels and vice versa you can call one of BuildContext extension methods:
 ```dart
 // Converts inches to Flutter logical pixels
 context.inchesToPixels(double inches);
 
-// Converts centimeters to Flutter logical pixels
-context.cmToPixels(double cm);
+// Converts millimeters to Flutter logical pixels
+context.mmToPixels(double mm);
 
 // Converts Flutter logical pixels into inches
 context.pixelsToInches(int pixels);
 
-// Converts Flutter logical pixels into centimeters
-context.pixelsToCm(int pixels);
+// Converts Flutter logical pixels into millimeters
+context.pixelsToMm(int pixels);
 ```
+
+### DisplayMetricsWidget
+
 
 ## Credits
 

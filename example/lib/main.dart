@@ -18,18 +18,40 @@ class ExampleApp extends StatelessWidget {
     // add DisplayMetricsWidget to Widget tree above MaterialApp to use
     // DisplayMetrics.of(context) and BuildContext extension methods
     return DisplayMetricsWidget(
+      // Set this to true if you need to update size when orientation of your device changes
+      updateSizeOnRotate: true,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.light(
           useMaterial3: true,
-        ),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Display metrics example app'),
-            centerTitle: true,
+        ).copyWith(
+          colorScheme: const ColorScheme.light().copyWith(
+            primary: Colors.purple,
+            secondary: Colors.blue.shade700,
+            onSecondary: Colors.white,
+            surface: Colors.grey.shade200,
+            onSurface: Colors.black,
           ),
-          body: const BodyWidget(),
         ),
+        home: const Page(),
       ),
+    );
+  }
+}
+
+class Page extends StatelessWidget {
+  const Page({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Display metrics example app'),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        foregroundColor: Theme.of(context).colorScheme.onSecondary,
+      ),
+      body: const BodyWidget(),
     );
   }
 }
@@ -57,9 +79,9 @@ class BodyWidget extends StatelessWidget {
           width: context.inchesToPixels(1),
         ),
         RealWidthWidget(
-          label: 'real 1 cm',
-          // call context.cmToPixels(cm) to convert centimeters into logical pixels
-          width: context.cmToPixels(1),
+          label: 'real 1 mm',
+          // call context.mmToPixels(mm) to convert millimeters into logical pixels
+          width: context.mmToPixels(1),
         ),
         const SizedBox(height: 8),
         const Expanded(child: RulerWidget()),
@@ -99,13 +121,13 @@ class DisplayInfoWidget extends StatelessWidget {
             ),
             MetricsLabel(
               title: 'physicalSize (inches)',
-              value:
-                  '${metrics?.physicalSize.width.toStringAsFixed(2)} x ${metrics?.physicalSize.height.toStringAsFixed(2)}',
+              value: '${metrics?.physicalSize.width.toStringAsFixed(2)} (w) x '
+                  '${metrics?.physicalSize.height.toStringAsFixed(2)} (h)',
             ),
             MetricsLabel(
               title: 'resolution (pixels)',
-              value:
-                  '${metrics?.resolution.width.toStringAsFixed(0)} x ${metrics?.resolution.height.toStringAsFixed(0)}',
+              value: '${metrics?.resolution.width.toStringAsFixed(0)} (w) x '
+                  '${metrics?.resolution.height.toStringAsFixed(0)} (h)',
             ),
           ],
         ),
@@ -130,7 +152,7 @@ class RealWidthWidget extends StatelessWidget {
           Container(
             width: width,
             height: 2,
-            color: _accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ],
       ),
@@ -159,7 +181,7 @@ class MetricsLabel extends StatelessWidget {
             text: value,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: _accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
         ],
@@ -179,6 +201,16 @@ class _RulerWidgetState extends State<RulerWidget> {
   RulerUnits _selectedUnits = RulerUnits.inches;
   double _sliderValue = 0;
   double _maxSliderValue = 0;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    DisplayMetrics.maybeOf(context);
+    setState(() {
+      _sliderValue = 0;
+      _maxSliderValue = 0;
+    });
+  }
 
   void _updateSelector(RulerUnits? value) {
     if (value == null || value == _selectedUnits) return;
@@ -210,8 +242,8 @@ class _RulerWidgetState extends State<RulerWidget> {
     return _selectedUnits == RulerUnits.inches
         // call context.pixelsToInches(pixels) to convert logical pixels into inches
         ? context.pixelsToInches(pixels.toInt())
-        // call context.pixelsToCm(pixels) to convert logical pixels into centimeters
-        : context.pixelsToCm(pixels.toInt());
+        // call context.pixelsToMm(pixels) to convert logical pixels into millimeters
+        : context.pixelsToMm(pixels.toInt());
   }
 
   String get _rulerLabel =>
@@ -223,41 +255,34 @@ class _RulerWidgetState extends State<RulerWidget> {
       alignment: Alignment.topCenter,
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 0,
-              bottom: 8,
-              left: 8,
-              right: 8,
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Theme.of(context).colorScheme.surface,
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey.shade200,
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  UnitSelector(
-                    value: RulerUnits.inches,
-                    selectedValue: _selectedUnits,
-                    onChange: _updateSelector,
+            margin: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
+            padding: const EdgeInsets.all(8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                UnitSelector(
+                  value: RulerUnits.inches,
+                  selectedValue: _selectedUnits,
+                  onChange: _updateSelector,
+                ),
+                UnitSelector(
+                  value: RulerUnits.mm,
+                  selectedValue: _selectedUnits,
+                  onChange: _updateSelector,
+                ),
+                Expanded(
+                  child: RulerSlider(
+                    length: _sliderValue,
+                    maxLength: _maxSliderValue,
+                    onChange: _updateSliderValue,
                   ),
-                  UnitSelector(
-                    value: RulerUnits.cm,
-                    selectedValue: _selectedUnits,
-                    onChange: _updateSelector,
-                  ),
-                  Expanded(
-                    child: RulerSlider(
-                      length: _sliderValue,
-                      maxLength: _maxSliderValue,
-                      onChange: _updateSliderValue,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Expanded(
@@ -293,7 +318,12 @@ class UnitSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(value.name),
+        Text(
+          value.name,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
         Radio<RulerUnits>(
           value: value,
           groupValue: selectedValue,
@@ -324,7 +354,7 @@ class Ruler extends StatelessWidget {
                 topRight: Radius.circular(8),
                 bottomRight: Radius.circular(8),
               ),
-              color: _accentColor,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
           if (height != 0)
@@ -360,6 +390,4 @@ class RulerSlider extends StatelessWidget {
   }
 }
 
-enum RulerUnits { inches, cm }
-
-Color _accentColor = const Color(0xFF381E72);
+enum RulerUnits { inches, mm }

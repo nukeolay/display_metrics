@@ -24,11 +24,7 @@ abstract class DisplayMetricsPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<Size?> getSize() {
-    throw UnimplementedError('getSize() has not been implemented.');
-  }
+  Future<Size?> getSize();
 
-  Future<Size?> getResolution() {
-    throw UnimplementedError('getResolution() has not been implemented.');
-  }
+  Future<Size?> getResolution();
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
-import 'display_metrics_platform_interface.dart';
+import 'package:display_metrics/display_metrics.dart';
 
 /// An implementation of [DisplayMetricsPlatform] that uses method channels.
 class MethodChannelDisplayMetrics extends DisplayMetricsPlatform {

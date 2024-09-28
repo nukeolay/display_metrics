@@ -1,6 +1,6 @@
-import 'package:display_metrics/display_metrics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:display_metrics/display_metrics.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -46,6 +46,16 @@ void main() {
           physicalSize: Size(10, 10),
           resolution: Size(1000, 1000),
         ),
+      );
+    },
+  );
+
+  test(
+    'copyWith null',
+    () {
+      expect(
+        data.copyWith(),
+        data,
       );
     },
   );

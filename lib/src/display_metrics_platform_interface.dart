@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
-import 'display_metrics_method_channel.dart';
+import 'package:display_metrics/src/display_metrics_method_channel.dart';
 
 abstract class DisplayMetricsPlatform extends PlatformInterface {
   /// Constructs a DisplayMetricsPlatform.

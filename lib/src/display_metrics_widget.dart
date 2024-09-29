@@ -25,6 +25,7 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
 
   @override
   void didChangeDependencies() {
+    super.didChangeDependencies();
     if (!Platform.isAndroid && !Platform.isIOS) return;
     final devicePixelRatio = MediaQuery.maybeDevicePixelRatioOf(context);
     if (devicePixelRatio != null) {
@@ -33,7 +34,6 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
         widget.updateSizeOnRotate ? MediaQuery.orientationOf(context) : null,
       );
     }
-    super.didChangeDependencies();
   }
 
   Future<void> _updateDisplayMetrics(

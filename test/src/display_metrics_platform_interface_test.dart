@@ -4,7 +4,6 @@ import 'package:display_metrics/src/display_metrics_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-
   test(
     'get instance',
     () {

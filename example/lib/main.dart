@@ -91,7 +91,11 @@ class BodyWidget extends StatelessWidget {
 }
 
 class DisplayInfoWidget extends StatelessWidget {
-  const DisplayInfoWidget({required this.metrics, super.key});
+  const DisplayInfoWidget({
+    required this.metrics,
+    super.key,
+  });
+
   final DisplayMetricsData? metrics;
 
   @override
@@ -137,7 +141,12 @@ class DisplayInfoWidget extends StatelessWidget {
 }
 
 class RealWidthWidget extends StatelessWidget {
-  const RealWidthWidget({required this.label, required this.width, super.key});
+  const RealWidthWidget({
+    required this.label,
+    required this.width,
+    super.key,
+  });
+
   final String label;
   final double width;
 
@@ -335,7 +344,12 @@ class UnitSelector extends StatelessWidget {
 }
 
 class Ruler extends StatelessWidget {
-  const Ruler({required this.label, required this.height, super.key});
+  const Ruler({
+    required this.label,
+    required this.height,
+    super.key,
+  });
+
   final String label;
   final double height;
 
@@ -375,6 +389,7 @@ class RulerSlider extends StatelessWidget {
     required this.onChange,
     super.key,
   });
+
   final double length;
   final double maxLength;
   final void Function(double) onChange;

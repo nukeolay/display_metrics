@@ -62,7 +62,8 @@ class DisplayMetricsData {
   int get hashCode => physicalSize.hashCode ^ resolution.hashCode;
 
   @override
-  String toString() {
-    return 'ppi: $ppi, diaginal: $diagonal inches, physicalSize: ${physicalSize.width}x${physicalSize.height} inches, resolution: ${resolution.width}x${resolution.height} pixels';
-  }
+  String toString() => 'ppi: $ppi, '
+      'diaginal: $diagonal inches, '
+      'physicalSize: ${physicalSize.width}x${physicalSize.height} inches, '
+      'resolution: ${resolution.width}x${resolution.height} pixels';
 }

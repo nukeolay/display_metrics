@@ -26,7 +26,7 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (!Platform.isAndroid && !Platform.isIOS) return;
+    if (!Platform.isAndroid && !Platform.isIOS && !Platform.isWindows) return;
     final devicePixelRatio = MediaQuery.maybeDevicePixelRatioOf(context);
     if (devicePixelRatio != null) {
       _updateDisplayMetrics(

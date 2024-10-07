@@ -27,8 +27,8 @@ class ExampleApp extends StatelessWidget {
           useMaterial3: true,
         ).copyWith(
           colorScheme: const ColorScheme.light().copyWith(
-            primary: Colors.purple,
-            secondary: Colors.blue.shade700,
+            primary: Colors.blue,
+            secondary: Colors.blue.shade900,
             onSecondary: Colors.white,
             surface: Colors.grey.shade200,
             onSurface: Colors.black,

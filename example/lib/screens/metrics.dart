@@ -22,7 +22,6 @@ class MetricsScreen extends StatelessWidget {
         foregroundColor: Theme.of(context).colorScheme.onSecondary,
       ),
       body: ListView(
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DisplayInfoWidget(metrics: metrics),
           RealWidthWidget(
@@ -36,9 +35,11 @@ class MetricsScreen extends StatelessWidget {
             width: context.mmToPixels(1),
           ),
           const SizedBox(height: 8),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).pushNamed('/ruler'),
-            child: const Text('Show Ruler'),
+          UnconstrainedBox(
+            child: ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed('/ruler'),
+              child: const Text('Open Ruler'),
+            ),
           ),
         ],
       ),

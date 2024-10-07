@@ -4,17 +4,11 @@ version: 0.4.0
 homepage: https://github.com/nukeolay/display_metrics
 
 topics:
-  - display
   - screen
-  - layout
   - ppi
   - size
   - resolution
-  - diagonal
   - pixels
-  - px
-  - mm
-  - cm
 
 environment:
   sdk: '>=3.1.2 <4.0.0'

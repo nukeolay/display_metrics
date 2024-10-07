@@ -18,20 +18,20 @@ class MetricsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Display metrics example app'),
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        foregroundColor: Theme.of(context).colorScheme.onSecondary,
       ),
       body: ListView(
         children: [
           DisplayInfoWidget(metrics: metrics),
           RealWidthWidget(
             label: 'real 1 inch',
-            // call context.inchesToPixels(inches) to convert inches into logical pixels
+            // call context.inchesToPixels(inches) to convert 
+            // inches into logical pixels
             width: context.inchesToPixels(1),
           ),
           RealWidthWidget(
             label: 'real 1 mm',
-            // call context.mmToPixels(mm) to convert millimeters into logical pixels
+            // call context.mmToPixels(mm) to convert 
+            // millimeters into logical pixels
             width: context.mmToPixels(1),
           ),
           const SizedBox(height: 8),
@@ -118,7 +118,7 @@ class RealWidthWidget extends StatelessWidget {
           Container(
             width: width,
             height: 2,
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ],
       ),
@@ -147,7 +147,7 @@ class MetricsLabel extends StatelessWidget {
             text: value,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ],

@@ -11,8 +11,6 @@ class RulerScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Ruler'),
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        foregroundColor: Theme.of(context).colorScheme.onSecondary,
       ),
       body: const RulerWidget(),
     );
@@ -69,9 +67,11 @@ class _RulerWidgetState extends State<RulerWidget> {
 
   double _convertPixels(double pixels) {
     return _selectedUnits == RulerUnits.inches
-        // call context.pixelsToInches(pixels) to convert logical pixels into inches
+        // call context.pixelsToInches(pixels) to convert
+        // logical pixels into inches
         ? context.pixelsToInches(pixels.toInt())
-        // call context.pixelsToMm(pixels) to convert logical pixels into millimeters
+        // call context.pixelsToMm(pixels) to convert
+        // logical pixels into millimeters
         : context.pixelsToMm(pixels.toInt());
   }
 

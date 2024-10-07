@@ -19,18 +19,22 @@ class ExampleApp extends StatelessWidget {
     // add DisplayMetricsWidget to Widget tree above MaterialApp to use
     // DisplayMetrics.of(context) and BuildContext extension methods
     return DisplayMetricsWidget(
-      // Set this to true if you need to update size when orientation of your device changes
+      // Set this to true if you need to update size
+      // when orientation of your device changes
       updateSizeOnRotate: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(
           useMaterial3: true,
         ).copyWith(
+          appBarTheme: AppBarTheme(
+            color: Colors.blue.shade900,
+            foregroundColor: Colors.white,
+          ),
           colorScheme: const ColorScheme.light().copyWith(
-            primary: Colors.blue,
-            secondary: Colors.blue.shade900,
-            onSecondary: Colors.white,
-            surface: Colors.grey.shade200,
+            primary: Colors.blue.shade900,
+            onPrimary: Colors.white,
+            surface: Colors.grey.shade300,
             onSurface: Colors.black,
           ),
         ),
@@ -42,4 +46,3 @@ class ExampleApp extends StatelessWidget {
     );
   }
 }
-

@@ -3,6 +3,18 @@ description: Flutter plugin to retrieve device display metrics (resolution, size
 version: 0.4.0
 homepage: https://github.com/nukeolay/display_metrics
 
+topics:
+  - display
+  - screen
+  - ppi
+  - size
+  - resolution
+  - diagonal
+  - pixels
+  - px
+  - mm
+  - cm
+
 environment:
   sdk: '>=3.1.2 <4.0.0'
   flutter: '>=3.3.0'

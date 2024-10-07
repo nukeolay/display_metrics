@@ -6,6 +6,7 @@ homepage: https://github.com/nukeolay/display_metrics
 topics:
   - display
   - screen
+  - layout
   - ppi
   - size
   - resolution

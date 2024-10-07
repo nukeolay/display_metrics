@@ -13,7 +13,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  display_metrics: ^0.3.0
+  display_metrics: ^0.4.0
 ```
 
 In your library add the following import:
@@ -30,13 +30,9 @@ class ExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // add DisplayMetricsWidget to Widget tree above MaterialApp to use
-    // DisplayMetrics.of(context) and BuildContext extension methods
+    // add DisplayMetricsWidget to Widget tree above MaterialApp to use DisplayMetrics.of(context) and BuildContext extension methods
     return DisplayMetricsWidget(
       child: MaterialApp(
-        theme: ThemeData.light(
-          useMaterial3: true,
-        ),
         home: Scaffold(
           appBar: AppBar(
             title: const Text('Display metrics example app'),
@@ -49,7 +45,8 @@ class ExampleApp extends StatelessWidget {
   }
 }
 ```
-![Example app](https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example.png)
+<img src="https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example_1.png" alt="Example app" width="200"/>
+<img src="(https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example_2.png" alt="Ruler" width="200"/>
 
 ## Usage
 
@@ -100,7 +97,25 @@ context.pixelsToMm(int pixels);
 ```
 
 ### DisplayMetricsWidget
+```dart
+// Add [DisplayMetricsWidget] to Widget tree above MaterialApp to use DisplayMetrics.of(context) and BuildContext extension methods
+DisplayMetricsWidget(
+  // Set [updateSizeOnRotate] to true if you need to update size when orientation of your device changes
+  updateSizeOnRotate: true,
+  child: child,
+);
+```
 
+## Supported Platforms
+
+| Platform | Support | 
+|----------|:-------:|
+| iOS      |✅|
+| Android  |✅|
+| Windows  |✅|
+| Web      |🛠<br>(to be added)|
+| macOS    |🛠<br>(to be added)|
+| Linux    |🛠<br>(to be added)|
 
 ## Credits
 

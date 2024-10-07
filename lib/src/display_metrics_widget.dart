@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:display_metrics/display_metrics.dart';
 
 class DisplayMetricsWidget extends StatefulWidget {
+  /// Add [DisplayMetricsWidget] to Widget tree above MaterialApp to use
+  /// DisplayMetrics.of(context) and BuildContext extension methods
   const DisplayMetricsWidget({
     required this.child,
     this.updateSizeOnRotate = false,

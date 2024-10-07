@@ -1,3 +1,7 @@
+## 0.4.0
+* Added **Windows** platform support
+* Added tests (**84%** test coverage)
+
 ## 0.3.0
 * Added *mmToPixels(mm)* & *pixelsToMm(pixels)* methods
 * *cmToPixels* & *pixelsToCm* are deprecated (use *mmToPixels* & *pixelsToMm* instead)

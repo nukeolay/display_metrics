@@ -15,6 +15,7 @@ extension ContextExtension on BuildContext {
   }
 
   @Deprecated('Use mmToPixels(mm) instead')
+
   /// Converts centimeters to Flutter logical pixels
   double cmToPixels(double cm) {
     final inches = cm / 2.54;
@@ -33,6 +34,7 @@ extension ContextExtension on BuildContext {
   }
 
   @Deprecated('Use pixelsToMm(pixels) instead')
+
   /// Converts Flutter logical pixels into centimeters
   double pixelsToCm(int pixels) {
     return pixelsToInches(pixels) * 2.54;

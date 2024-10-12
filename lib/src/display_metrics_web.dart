@@ -1,8 +1,3 @@
-// In order to *not* need this ignore, consider extracting the "web" version
-// of your plugin as a separate package, instead of inlining it in the same
-// package as the core of your plugin.
-// ignore: avoid_web_libraries_in_flutter
-
 import 'dart:ui';
 import 'dart:html' as html;
 
@@ -21,7 +16,10 @@ class DisplayMetricsWeb extends DisplayMetricsPlatform {
     final width = screen?.width?.toDouble();
     final height = screen?.height?.toDouble();
     if (width == null || height == null) return null;
-    return Size(width * devicePixelRatio, height * devicePixelRatio);
+    return Size(
+      width * devicePixelRatio,
+      height * devicePixelRatio,
+    );
   }
 
   @override
@@ -34,8 +32,9 @@ class DisplayMetricsWeb extends DisplayMetricsPlatform {
     final devicePixelRatio = html.window.devicePixelRatio;
     final dpi = div.offsetWidth * devicePixelRatio;
     div.remove();
-    final width = resolution.width / dpi;
-    final height = resolution.height / dpi;
-    return Size(width, height);
+    return Size(
+      resolution.width / dpi,
+      resolution.height / dpi,
+    );
   }
 }

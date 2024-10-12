@@ -18,6 +18,9 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
+  flutter_web_plugins:
+    sdk: flutter
+  web: ^0.5.1
 
 dev_dependencies:
   flutter_test:
@@ -34,3 +37,6 @@ flutter:
         pluginClass: DisplayMetricsPlugin
       windows:
         pluginClass: DisplayMetricsPluginCApi
+      web:
+        pluginClass: DisplayMetricsWeb
+        fileName: src/display_metrics_web.dart

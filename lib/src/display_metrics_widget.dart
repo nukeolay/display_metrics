@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:display_metrics/display_metrics.dart';
@@ -28,7 +27,6 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (!Platform.isAndroid && !Platform.isIOS && !Platform.isWindows) return;
     final devicePixelRatio = MediaQuery.maybeDevicePixelRatioOf(context);
     if (devicePixelRatio != null) {
       _updateDisplayMetrics(

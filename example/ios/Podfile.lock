@@ -1,28 +1,22 @@
 PODS:
-  - display_metrics (0.1.4):
+  - display_metrics (0.4.1):
     - Flutter
   - Flutter (1.0.0)
-  - integration_test (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - display_metrics (from `.symlinks/plugins/display_metrics/ios`)
   - Flutter (from `Flutter`)
-  - integration_test (from `.symlinks/plugins/integration_test/ios`)
 
 EXTERNAL SOURCES:
   display_metrics:
     :path: ".symlinks/plugins/display_metrics/ios"
   Flutter:
     :path: Flutter
-  integration_test:
-    :path: ".symlinks/plugins/integration_test/ios"
 
 SPEC CHECKSUMS:
-  display_metrics: 9f1a2923315357de6d5a6356fd0203759725b101
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  integration_test: 13825b8a9334a850581300559b8839134b124670
+  display_metrics: c95f49336329ec1f8ab275d8ab966dd049425285
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
 
-PODFILE CHECKSUM: 0b091f5564f8da5122f63fc378dde3c7e7e1dbdd
+PODFILE CHECKSUM: 10b75cae8b0e4f0acb86c1bf5bf0f50a9a144c71
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.15.2

@@ -24,13 +24,13 @@ class MetricsScreen extends StatelessWidget {
           DisplayInfoWidget(metrics: metrics),
           RealWidthWidget(
             label: 'real 1 inch',
-            // call context.inchesToPixels(inches) to convert 
+            // call context.inchesToPixels(inches) to convert
             // inches into logical pixels
             width: context.inchesToPixels(1),
           ),
           RealWidthWidget(
             label: 'real 1 mm',
-            // call context.mmToPixels(mm) to convert 
+            // call context.mmToPixels(mm) to convert
             // millimeters into logical pixels
             width: context.mmToPixels(1),
           ),

@@ -46,7 +46,7 @@ class ExampleApp extends StatelessWidget {
 }
 ```
 <img src="https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example_1.png" alt="Example app" width="200"/>
-<img src="(https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example_2.png" alt="Ruler" width="200"/>
+<img src="https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example_2.png" alt="Ruler" width="200"/>
 
 ## Usage
 

@@ -1,3 +1,7 @@
+## 0.4.1
+* Updated dependencies in *example*
+* Fixed code formatting issues
+
 ## 0.4.0
 * Added **Windows** platform support
 * Added tests (**84%** test coverage)

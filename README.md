@@ -13,7 +13,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  display_metrics: ^0.4.0
+  display_metrics: ^0.4.1
 ```
 
 In your library add the following import:

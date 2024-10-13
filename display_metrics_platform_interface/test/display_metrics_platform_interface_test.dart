@@ -1,5 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('adds one to input values', () {});
+  test('Tell the user where to find the real tests', () {
+    print('---');
+    // TODO(nukeolay): add tests
+    print('---');
+  });
 }

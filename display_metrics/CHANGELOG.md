@@ -36,4 +36,4 @@
 * README.md updated
 
 ## 0.1.0
-* Initial version
+* Initial release

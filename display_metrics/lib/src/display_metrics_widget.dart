@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:display_metrics/display_metrics.dart';
+import 'package:display_metrics_platform_interface/display_metrics_platform_interface.dart';
 
 class DisplayMetricsWidget extends StatefulWidget {
   /// Add [DisplayMetricsWidget] to Widget tree above MaterialApp to use

@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  display_metrics
+  display_metrics_windows
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

@@ -1,0 +1,39 @@
+name: display_metrics_android
+description: Android implementation of display_metrics
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  display_metrics_platform_interface:
+    path: ../display_metrics_platform_interface
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  plugin:
+    implements: shared_preferences
+    platforms:
+      android:
+        package: dev.nukeolay.display_metrics_android
+        pluginClass: DisplayMetricsAndroidPlugin
+        dartPluginClass: DisplayMetricsAndroid
+
+topics:
+  - screen
+  - ppi
+  - size
+  - resolution
+  - pixels  

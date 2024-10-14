@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
   display_metrics_platform_interface:
     path: ../display_metrics_platform_interface
+  display_metrics_android:
+    path: ../display_metrics_android
   display_metrics_web:
     path: ../display_metrics_web
 
@@ -25,14 +27,13 @@ flutter:
   plugin:
     platforms:
       android:
-        package: dev.nukeolay.display_metrics
-        pluginClass: DisplayMetricsPlugin
+        default_package: display_metrics_android
       ios:
         pluginClass: DisplayMetricsPlugin
       windows:
         pluginClass: DisplayMetricsPluginCApi
       web:
-        default_package: shared_preferences_web
+        default_package: display_metrics_web
 
 topics:
   - screen

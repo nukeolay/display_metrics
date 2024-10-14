@@ -1,7 +1,6 @@
 name: display_metrics_platform_interface
 description: A common platform interface for the display_metrics plugin.
 repository: https://github.com/nukeolay/display_metrics
-homepage: https://github.com/nukeolay/display_metrics
 version: 1.0.0
 
 environment:

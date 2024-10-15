@@ -4,7 +4,6 @@ import 'dart:html' as html;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:display_metrics_platform_interface/display_metrics_platform_interface.dart';
 
-
 class DisplayMetricsPlugin extends DisplayMetricsPlatform {
   static void registerWith(Registrar registrar) {
     DisplayMetricsPlatform.instance = DisplayMetricsPlugin();
@@ -30,8 +29,7 @@ class DisplayMetricsPlugin extends DisplayMetricsPlatform {
     final div = html.DivElement();
     div.style.width = '1in';
     html.document.body!.append(div);
-    final devicePixelRatio = html.window.devicePixelRatio;
-    final dpi = div.offsetWidth * devicePixelRatio;
+    final dpi = div.offsetWidth;
     div.remove();
     return Size(
       resolution.width / dpi,

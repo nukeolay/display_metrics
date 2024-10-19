@@ -63,7 +63,7 @@ class DisplayMetricsData {
 
   @override
   String toString() => 'ppi: $ppi, '
-      'diaginal: $diagonal inches, '
+      'diagonal: $diagonal inches, '
       'physicalSize: ${physicalSize.width}x${physicalSize.height} inches, '
       'resolution: ${resolution.width}x${resolution.height} pixels';
 }

@@ -117,6 +117,19 @@ DisplayMetricsWidget(
 | macOS    |🛠<br>(to be added)|
 | Linux    |🛠<br>(to be added)|
 
+## Limitations
+
+Due to browser limitations, it's not possible to accurately determine 
+the physical screen dimensions or the actual DPI on 
+the web platform. Browsers use a unit called a CSS pixel, which is not 
+a physical pixel but a unit based on a reference pixel, 
+defined as 1/96th of an inch. This system depends on the viewing angle of 
+the device and varies across displays, making it impossible to obtain 
+accurate physical measurements or DPI through web APIs. You can read more [here][1].
+
 ## Credits
 
-iOS implementation uses Jens Schwarzer's UIScreenExtension (https://github.com/marchv/UIScreenExtension)
+iOS implementation uses Jens Schwarzer's [UIScreenExtension][2]
+
+[1]: https://stackoverflow.com/questions/21680629/getting-the-physical-screen-dimensions-dpi-pixel-density-in-chrome-on-androi
+[2]: https://stackoverflow.com/questions/21680629/getting-the-physical-screen-dimensions-dpi-pixel-density-in-chrome-on-androi

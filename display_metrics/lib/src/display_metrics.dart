@@ -15,8 +15,10 @@ class DisplayMetrics extends InheritedWidget {
   }
 
   static DisplayMetricsData of(BuildContext context) {
+    final widget = context.dependOnInheritedWidgetOfExactType<DisplayMetrics>();
+    assert(widget != null, 'No DisplayMetrics found in context');
     final data = maybeOf(context);
-    assert(data != null, 'No DisplayMetrics found in context');
+    assert(data != null, 'DisplayMetricsData has not been loaded yet');
     return data!;
   }
 

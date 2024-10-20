@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:display_metrics/display_metrics.dart';
 
-import 'display_metrics_test.dart';
+import 'utils/widgets.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

@@ -2,35 +2,15 @@ import 'package:display_metrics_platform_interface/display_metrics_method_channe
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'utils/mock_channel.dart';
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   final platform = MethodChannelDisplayMetrics();
-  const channel = MethodChannel('display_metrics');
-
-  setUp(
-    () {
-      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMethodCallHandler(
-        channel,
-        (MethodCall methodCall) async {
-          if (methodCall.method == 'getResolution') {
-            return {'width': 480, 'height': 640};
-          } else if (methodCall.method == 'getSize') {
-            return {'width': 3, 'height': 4};
-          }
-          return null;
-        },
-      );
-    },
-  );
-
-  tearDown(
-    () {
-      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMethodCallHandler(channel, null);
-    },
-  );
+  const mockChannel = MockChannel();
+  mockChannel.setup();
+  mockChannel.teardown();
 
   test('getResolution', () async {
     expect(await platform.getResolution(), const Size(480, 640));

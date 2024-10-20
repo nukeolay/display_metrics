@@ -76,7 +76,7 @@ void main() {
       expect(
         data.toString(),
         'ppi: ${data.ppi}, '
-        'diaginal: ${data.diagonal} inches, '
+        'diagonal: ${data.diagonal} inches, '
         'physicalSize: ${data.physicalSize.width}x${data.physicalSize.height} inches, '
         'resolution: ${data.resolution.width}x${data.resolution.height} pixels',
       );

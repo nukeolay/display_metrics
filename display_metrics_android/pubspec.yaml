@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  display_metrics_platform_interface: ^1.0.0
+  display_metrics_platform_interface: ^1.0.1
 
 dev_dependencies:
   flutter_test:

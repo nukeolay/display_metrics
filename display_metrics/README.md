@@ -45,8 +45,8 @@ class ExampleApp extends StatelessWidget {
   }
 }
 ```
-<img src="https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example_1.png" alt="Example app" width="200"/>
-<img src="https://raw.githubusercontent.com/nukeolay/display_metrics/main/example/example_2.png" alt="Ruler" width="200"/>
+<img src="https://raw.githubusercontent.com/nukeolay/display_metrics/main/display_metrics/example/example_1.png" alt="Example app" width="200"/>
+<img src="https://raw.githubusercontent.com/nukeolay/display_metrics/main/display_metrics/example/example_2.png" alt="Ruler" width="200"/>
 
 ## Usage
 
@@ -113,7 +113,7 @@ DisplayMetricsWidget(
 | iOS      |✅|
 | Android  |✅|
 | Windows  |✅|
-| Web      |✅<br>please read<br>[limitations](#-limitations)|
+| Web      |✅<br>please read<br>[limitations](#limitations)|
 | macOS    |🛠<br>(to be added)|
 | Linux    |🛠<br>(to be added)|
 

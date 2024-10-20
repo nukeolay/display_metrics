@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:display_metrics/display_metrics.dart';
 import 'package:display_metrics_platform_interface/display_metrics_platform_interface.dart';
 
+/// Widget that provides access to [DisplayMetrics]
 class DisplayMetricsWidget extends StatefulWidget {
   /// Add [DisplayMetricsWidget] to Widget tree above MaterialApp to use
   /// DisplayMetrics.of(context) and BuildContext extension methods
@@ -13,6 +14,7 @@ class DisplayMetricsWidget extends StatefulWidget {
     super.key,
   });
 
+  /// Widget that will be displayed
   final Widget child;
 
   /// Set this to true if you need to update size when orientation of your device changes

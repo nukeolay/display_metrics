@@ -33,7 +33,9 @@ abstract class DisplayMetricsPlatform extends PlatformInterface {
     _instance = instance;
   }
 
+  /// Method to get device display size in inches
   Future<Size?> getSize();
 
+  /// Method to get device display resolution in pixels
   Future<Size?> getResolution();
 }

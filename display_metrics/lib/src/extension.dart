@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:display_metrics/display_metrics.dart';
 
+/// BuildContext extension that provides essential display_metrics methods
 extension ContextExtension on BuildContext {
   /// Converts inches to Flutter logical pixels
   double inchesToPixels(double inches) {

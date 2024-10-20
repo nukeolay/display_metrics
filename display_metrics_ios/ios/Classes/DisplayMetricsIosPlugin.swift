@@ -1,13 +1,13 @@
 import Flutter
 import UIKit
 
-public class DisplayMetricsPlugin: NSObject, FlutterPlugin {
+public class DisplayMetricsIosPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "display_metrics", binaryMessenger: registrar.messenger())
-        let instance = DisplayMetricsPlugin()
-        registrar.addMethodCallDelegate(instance, channel: channel)
+      let channel = FlutterMethodChannel(name: "display_metrics", binaryMessenger: registrar.messenger())
+      let instance = DisplayMetricsIosPlugin()
+      registrar.addMethodCallDelegate(instance, channel: channel)
     }
-    
+
     func getSize() -> [String: CGFloat] {
         let screenRect = UIScreen.dimensionInInches
         let screenWidth = screenRect?.width
@@ -21,9 +21,7 @@ public class DisplayMetricsPlugin: NSObject, FlutterPlugin {
         let screenHeight = screenRect.size.height
         return ["width": screenWidth, "height": screenHeight]
     }
-    
-    
-    
+
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         case "getSize":

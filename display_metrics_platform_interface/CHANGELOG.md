@@ -1,5 +1,8 @@
+## 1.0.3
+* Updated documentation
+
 ## 1.0.2
-* Provided documentation for library methods
+* Provided documentation
 
 ## 1.0.1
 * Updated *pubspec.yaml* (fixed repository link)

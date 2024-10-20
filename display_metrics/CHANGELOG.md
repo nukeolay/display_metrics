@@ -1,3 +1,7 @@
+<!-- ## 0.5.0
+* Refactored plugin to follow the federated plugin architecture
+* Added Web support -->
+
 ## 0.4.1
 * Updated dependencies in *example*
 * Fixed code formatting issues

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 /// An implementation of [DisplayMetricsPlatform] that uses method channels.
 class MethodChannelDisplayMetrics extends DisplayMetricsPlatform {
-  /// The method channel used to interact with the native platform.
+  /// Registers this class as the default instance of [DisplayMetricsPlatform].
   @visibleForTesting
   final methodChannel = const MethodChannel('display_metrics');
 

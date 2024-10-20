@@ -10,10 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  display_metrics_platform_interface: ^1.0.2
-  display_metrics_android: ^1.0.0
-  display_metrics_ios:
-    path: ../display_metrics_ios
+  display_metrics_platform_interface: ^1.0.3
+  display_metrics_android: ^1.0.2
+  display_metrics_ios: ^1.0.1
   display_metrics_windows:
     path: ../display_metrics_windows
   display_metrics_web:

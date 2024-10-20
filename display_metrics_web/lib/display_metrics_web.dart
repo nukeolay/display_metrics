@@ -4,7 +4,11 @@ import 'dart:html' as html;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:display_metrics_platform_interface/display_metrics_platform_interface.dart';
 
+/// The Web implementation of [DisplayMetricsPlatform].
+///
+/// This class implements the `package:shared_preferences` functionality for Web.
 class DisplayMetricsPlugin extends DisplayMetricsPlatform {
+  /// Registers this class as the default instance of [DisplayMetricsPlatform].
   static void registerWith(Registrar registrar) {
     DisplayMetricsPlatform.instance = DisplayMetricsPlugin();
   }

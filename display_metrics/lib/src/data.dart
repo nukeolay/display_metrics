@@ -3,7 +3,9 @@ import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 
+/// class that contains display metrics
 class DisplayMetricsData {
+  /// class that contains display metrics
   const DisplayMetricsData({
     required this.physicalSize,
     required this.resolution,
@@ -37,6 +39,7 @@ class DisplayMetricsData {
         math.pow(width, 2) + math.pow(height, 2),
       );
 
+  /// method to create updated copy of DisplayMetricsData
   DisplayMetricsData copyWith({
     Size? physicalSize,
     Size? resolution,

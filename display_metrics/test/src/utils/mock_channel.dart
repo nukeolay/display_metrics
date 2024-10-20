@@ -11,7 +11,7 @@ class MockChannel {
       () {
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(
-          const MethodChannel('display_metrics'),
+          channel,
           (MethodCall methodCall) async {
             if (methodCall.method == 'getResolution') {
               return {'width': 480, 'height': 640};

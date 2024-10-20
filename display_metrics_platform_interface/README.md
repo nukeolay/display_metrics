@@ -22,5 +22,5 @@ over breaking changes for this package.
 See https://flutter.dev/go/platform-interface-breaking-changes for a discussion
 on why a less-clean interface is preferable to a breaking change.
 
-[1]: ../display_metrics
+[1]: https://pub.dev/packages/display_metrics
 [2]: lib/display_metrics_platform_interface.dart

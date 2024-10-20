@@ -1,0 +1,25 @@
+name: display_metrics_platform_interface
+description: A common platform interface for the display_metrics plugin. Allows platform-specific implementations of the `display_metrics`
+homepage: https://github.com/nukeolay/display_metrics/tree/main/display_metrics_platform_interface
+version: 1.0.1
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+topics:
+  - screen
+  - ppi
+  - size
+  - resolution
+  - pixels

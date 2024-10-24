@@ -133,4 +133,23 @@ void main() {
       expect(pixels, 2.54);
     },
   );
+
+  test(
+    'byOrientation',
+    () {
+      const resolution = Size(640, 480);
+      expect(
+        resolution.byOrientation(
+          Orientation.landscape,
+        ),
+        resolution,
+      );
+      expect(
+        resolution.byOrientation(
+          Orientation.portrait,
+        ),
+        resolution.flipped,
+      );
+    },
+  );
 }

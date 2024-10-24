@@ -41,3 +41,17 @@ extension ContextExtension on BuildContext {
     return pixelsToInches(pixels) * 2.54;
   }
 }
+
+/// Size extension
+extension SizeExtension on Size {
+  /// Returns a [Size] with the width and height swapped for [Orientation]
+  Size byOrientation(Orientation? orientation) {
+    if (orientation == null) return this;
+    switch (orientation) {
+      case Orientation.portrait:
+        return Size(shortestSide, longestSide);
+      case Orientation.landscape:
+        return Size(longestSide, shortestSide);
+    }
+  }
+}

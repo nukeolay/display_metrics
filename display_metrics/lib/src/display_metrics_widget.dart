@@ -31,41 +31,26 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final devicePixelRatio = MediaQuery.maybeDevicePixelRatioOf(context);
-    if (devicePixelRatio != null) {
-      _updateDisplayMetrics(
-        devicePixelRatio,
-        widget.updateSizeOnRotate ? MediaQuery.orientationOf(context) : null,
-      );
-    }
+    if (devicePixelRatio == null) return;
+    _updateData(
+      devicePixelRatio,
+      widget.updateSizeOnRotate ? MediaQuery.orientationOf(context) : null,
+    ).then((data) => data != null ? setState(() => _data = data) : null);
   }
 
-  Future<void> _updateDisplayMetrics(
+
+  Future<DisplayMetricsData?> _updateData(
     double devicePixelRatio,
     Orientation? orientation,
   ) async {
     final physicalSize = await DisplayMetricsPlatform.instance.getSize();
     final resolution = await DisplayMetricsPlatform.instance.getResolution();
-    if (physicalSize == null || resolution == null) return;
-    setState(() {
-      _data = DisplayMetricsData(
-        physicalSize: _sizeByOrientation(physicalSize, orientation),
-        resolution: _sizeByOrientation(resolution, orientation),
-        devicePixelRatio: devicePixelRatio,
-      );
-    });
-  }
-
-  Size _sizeByOrientation(
-    Size size,
-    Orientation? orientation,
-  ) {
-    if (orientation == null) return size;
-    switch (orientation) {
-      case Orientation.portrait:
-        return Size(size.shortestSide, size.longestSide);
-      case Orientation.landscape:
-        return Size(size.longestSide, size.shortestSide);
-    }
+    if (physicalSize == null || resolution == null) return null;
+    return DisplayMetricsData(
+      physicalSize: physicalSize.byOrientation(orientation),
+      resolution: resolution.byOrientation(orientation),
+      devicePixelRatio: devicePixelRatio,
+    );
   }
 
   @override

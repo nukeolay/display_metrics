@@ -1,3 +1,6 @@
+## 0.5.1
+* Added unit tests (**100%** coverage)
+
 ## 0.5.0
 * Refactored plugin to follow the federated plugin architecture
 * Added Web platform support
@@ -8,7 +11,7 @@
 
 ## 0.4.0
 * Added **Windows** platform support
-* Added tests (**84%** test coverage)
+* Added unit tests (**84%** coverage)
 
 ## 0.3.0
 * Added *mmToPixels(mm)* & *pixelsToMm(pixels)* methods

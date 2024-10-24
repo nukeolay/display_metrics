@@ -13,7 +13,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  display_metrics: ^0.5.0
+  display_metrics: ^0.5.1
 ```
 
 In your library add the following import:
@@ -108,8 +108,8 @@ DisplayMetricsWidget(
 
 ## Supported Platforms
 
-| Platform | Support | 
-|----------|:-------:|
+| Platform |Support| 
+|----------|:-----:|
 | iOS      |✅|
 | Android  |✅|
 | Windows  |✅|
@@ -132,4 +132,4 @@ accurate physical measurements or DPI through web APIs. You can read more [here]
 iOS implementation uses Jens Schwarzer's [UIScreenExtension][2]
 
 [1]: https://stackoverflow.com/questions/21680629/getting-the-physical-screen-dimensions-dpi-pixel-density-in-chrome-on-androi
-[2]: https://stackoverflow.com/questions/21680629/getting-the-physical-screen-dimensions-dpi-pixel-density-in-chrome-on-androi
+[2]: https://github.com/marchv/UIScreenExtension

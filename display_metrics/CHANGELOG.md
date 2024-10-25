@@ -1,9 +1,12 @@
+## 0.6.0
+* Added **macOS** platform support
+
 ## 0.5.1
 * Added unit tests (**100%** coverage)
 
 ## 0.5.0
 * Refactored plugin to follow the federated plugin architecture
-* Added Web platform support
+* Added **Web** platform support
 
 ## 0.4.1
 * Updated dependencies in *example*

@@ -1,0 +1,33 @@
+name: display_metrics_macos
+description: macOS platform implementation of display_metrics plugin. This package will be automatically included in your app when you use display_metrics in macOS project 
+homepage: https://github.com/nukeolay/display_metrics/tree/main/display_metrics_macos
+version: 1.0.0
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  display_metrics_platform_interface: ^1.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  plugin:
+    implements: display_metrics
+    platforms:
+      macos:
+        dartPluginClass: DisplayMetricsMacos
+        pluginClass: DisplayMetricsMacosPlugin
+
+topics:
+  - screen
+  - ppi
+  - size
+  - resolution
+  - pixels  

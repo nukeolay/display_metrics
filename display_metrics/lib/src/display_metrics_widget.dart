@@ -38,7 +38,6 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
     ).then((data) => data != null ? setState(() => _data = data) : null);
   }
 
-
   Future<DisplayMetricsData?> _updateData(
     double devicePixelRatio,
     Orientation? orientation,

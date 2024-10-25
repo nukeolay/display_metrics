@@ -10,7 +10,7 @@ import 'utils/widgets.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  
+
   const channel = MethodChannel('display_metrics');
   setUp(
     () {

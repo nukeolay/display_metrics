@@ -63,6 +63,7 @@ void main() {
         case 'android':
         case 'ios':
         case 'windows':
+        case 'macos':
           expect(displayMetricsData != null, true);
           break;
         default:

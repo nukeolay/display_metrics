@@ -16,6 +16,8 @@ dependencies:
   display_metrics_windows: ^1.0.0
   display_metrics_macos: ^1.0.0
   display_metrics_web: ^0.0.1
+  display_metrics_linux:
+    path: ../display_metrics_linux
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +33,8 @@ flutter:
         default_package: display_metrics_ios
       windows:
         default_package: display_metrics_windows
+      linux:
+        default_package: display_metrics_linux
       macos:
         default_package: display_metrics_macos
       web:

@@ -5,7 +5,7 @@ import 'package:display_metrics_platform_interface/display_metrics_platform_inte
 
 /// The Android implementation of [DisplayMetricsPlatform].
 ///
-/// This class implements the `package:shared_preferences` functionality for Android.
+/// This class implements the `package:display_metrics` functionality for Android.
 class DisplayMetricsAndroid extends DisplayMetricsPlatform {
   /// Registers this class as the default instance of [DisplayMetricsPlatform].
   static void registerWith() {

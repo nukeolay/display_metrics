@@ -87,7 +87,6 @@ FlMethodResponse* get_resolution() {
     return FL_METHOD_RESPONSE(fl_method_success_response_new(result));
 }
 
-
 FlMethodResponse* get_physical_size() {
     Display* display = XOpenDisplay(NULL);
     if (!display) {
@@ -95,17 +94,82 @@ FlMethodResponse* get_physical_size() {
         return FL_METHOD_RESPONSE(fl_method_error_response_new("display_error", "Failed to open X11 display", error));
     }
 
-    Screen* screen = DefaultScreenOfDisplay(display);
-    int width_mm = screen->mwidth;
-    int height_mm = screen->mheight;
+    Window root = DefaultRootWindow(display);
+    XRRScreenResources* resources = XRRGetScreenResources(display, root);
+    if (!resources) {
+        XCloseDisplay(display);
+        g_autoptr(FlValue) error = fl_value_new_string("Error: Unable to fetch screen resources");
+        return FL_METHOD_RESPONSE(fl_method_error_response_new("screen_error", "Failed to fetch screen resources", error));
+    }
+
+    XRROutputInfo* output_info = XRRGetOutputInfo(display, resources, resources->outputs[0]);
+    if (!output_info) {
+        XRRFreeScreenResources(resources);
+        XCloseDisplay(display);
+        g_autoptr(FlValue) error = fl_value_new_string("Error: Unable to fetch output information");
+        return FL_METHOD_RESPONSE(fl_method_error_response_new("output_error", "Failed to fetch output information", error));
+    }
+
+    Atom edid_atom = XInternAtom(display, "EDID", True);
+    if (edid_atom == None) {
+        XRRFreeOutputInfo(output_info);
+        XRRFreeScreenResources(resources);
+        XCloseDisplay(display);
+        g_autoptr(FlValue) error = fl_value_new_string("Error: EDID property not found");
+        return FL_METHOD_RESPONSE(fl_method_error_response_new("edid_error", "EDID property not found", error));
+    }
+
+    Atom actual_type;
+    int actual_format;
+    unsigned long nitems, bytes_after;
+    unsigned char* prop = nullptr;
+
+    if (XRRGetOutputProperty(display, resources->outputs[0], edid_atom, 0, 100, False, False,
+                             AnyPropertyType, &actual_type, &actual_format, &nitems,
+                             &bytes_after, &prop) == Success && prop) {
+        if (nitems >= 128) {
+            int width_cm = prop[21];
+            int height_cm = prop[22];
+
+            double width_in = width_cm / 2.54;
+            double height_in = height_cm / 2.54;
+
+            XFree(prop);
+            XRRFreeOutputInfo(output_info);
+            XRRFreeScreenResources(resources);
+            XCloseDisplay(display);
+
+            g_autoptr(FlValue) result = fl_value_new_map();
+            fl_value_set(result, fl_value_new_string("width"), fl_value_new_float(width_in));
+            fl_value_set(result, fl_value_new_string("height"), fl_value_new_float(height_in));
+
+            return FL_METHOD_RESPONSE(fl_method_success_response_new(result));
+        }
+        XFree(prop);
+    }
+
+    // Fallback to screen dimensions if EDID fails
+    XRRFreeOutputInfo(output_info);
+    XRRFreeScreenResources(resources);
     XCloseDisplay(display);
 
-    double width_in = width_mm / 25.4;
-    double height_in = height_mm / 25.4;
+    display = XOpenDisplay(NULL);
+    if (!display) {
+        g_autoptr(FlValue) error = fl_value_new_string("Error: Unable to open X11 display for fallback");
+        return FL_METHOD_RESPONSE(fl_method_error_response_new("display_error", "Failed to open X11 display", error));
+    }
 
-    g_autoptr(FlValue) result = fl_value_new_map();
-    fl_value_set(result, fl_value_new_string("width"), fl_value_new_float(width_in));
-    fl_value_set(result, fl_value_new_string("height"), fl_value_new_float(height_in));
+    Screen* screen = DefaultScreenOfDisplay(display);
+    int width_mm_fallback = screen->mwidth;
+    int height_mm_fallback = screen->mheight;
+    XCloseDisplay(display);
 
-    return FL_METHOD_RESPONSE(fl_method_success_response_new(result));
+    double width_in_fallback = width_mm_fallback / 25.4;
+    double height_in_fallback = height_mm_fallback / 25.4;
+
+    g_autoptr(FlValue) result_fallback = fl_value_new_map();
+    fl_value_set(result_fallback, fl_value_new_string("width"), fl_value_new_float(width_in_fallback));
+    fl_value_set(result_fallback, fl_value_new_string("height"), fl_value_new_float(height_in_fallback));
+
+    return FL_METHOD_RESPONSE(fl_method_success_response_new(result_fallback));
 }

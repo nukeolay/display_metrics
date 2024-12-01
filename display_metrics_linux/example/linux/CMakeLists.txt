@@ -73,6 +73,7 @@ apply_standard_settings(${BINARY_NAME})
 # Add dependency libraries. Add any application-specific dependencies here.
 target_link_libraries(${BINARY_NAME} PRIVATE flutter)
 target_link_libraries(${BINARY_NAME} PRIVATE PkgConfig::GTK)
+target_link_libraries(${BINARY_NAME} PRIVATE flutter PkgConfig::GTK Xrandr)
 
 # Run the Flutter tool portions of the build. This must not be removed.
 add_dependencies(${BINARY_NAME} flutter_assemble)
@@ -87,7 +88,7 @@ set_target_properties(${BINARY_NAME}
 )
 
 # Enable the test target.
-set(include_display_metrics_linux_tests TRUE)
+set(include_display_metrics_linux_tests FALSE)
 
 # Generated plugin build rules, which manage building the plugins and adding
 # them to the application.

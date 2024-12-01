@@ -5,7 +5,7 @@ import 'package:display_metrics_platform_interface/display_metrics_platform_inte
 
 /// The macOS implementation of [DisplayMetricsPlatform].
 ///
-/// This class implements the `package:shared_preferences` functionality for macOS.
+/// This class implements the `package:display_metrics` functionality for macOS.
 class DisplayMetricsMacos extends DisplayMetricsPlatform {
   /// Registers this class as the default instance of [DisplayMetricsPlatform].
   static void registerWith() {

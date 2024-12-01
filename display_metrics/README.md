@@ -13,7 +13,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  display_metrics: ^0.6.0
+  display_metrics: ^1.0.0
 ```
 
 In your library add the following import:
@@ -108,14 +108,14 @@ DisplayMetricsWidget(
 
 ## Supported Platforms
 
-| Platform | Support | 
+| Platform | Support |
 |----------|:-------:|
 | iOS      | ✅ |
 | Android  | ✅ |
 | Windows  | ✅ |
 | macOS    | ✅ |
+| Linux    | ✅ |
 | Web      | ✅<br>please read<br>the [limitations](#limitations) |
-| Linux    | 🛠<br>(to be added) |
 
 ## Limitations
 

@@ -64,6 +64,7 @@ void main() {
         case 'ios':
         case 'windows':
         case 'macos':
+        case 'linux':
           expect(displayMetricsData != null, true);
           break;
         default:

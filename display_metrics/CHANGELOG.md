@@ -1,3 +1,6 @@
+## 1.0.0
+* Added **Linux** platform support
+
 ## 0.6.0
 * Added **macOS** platform support
 

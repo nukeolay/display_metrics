@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'display_metrics_ios'
-  s.version          = '1.0.0'
+  s.version          = '1.0.3'
   s.summary          = 'Flutter plugin to retrieve device display metrics (resolution, size, PPI, diagonal). Convert inches & mm to Flutter logical pixels.'
   s.description      = <<-DESC
 A new Flutter plugin project.

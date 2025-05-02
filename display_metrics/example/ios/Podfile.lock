@@ -1,5 +1,5 @@
 PODS:
-  - display_metrics_ios (1.0.0):
+  - display_metrics_ios (1.0.3):
     - Flutter
   - Flutter (1.0.0)
 
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  display_metrics_ios: 73e907f9d5c3eaa2452cd01e8df878b0e9f9e79d
+  display_metrics_ios: 8cb6c613d3cda282e41488a7139398a1675f27da
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
 
 PODFILE CHECKSUM: 10b75cae8b0e4f0acb86c1bf5bf0f50a9a144c71
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

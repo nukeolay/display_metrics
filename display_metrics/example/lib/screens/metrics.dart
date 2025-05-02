@@ -1,19 +1,46 @@
 import 'package:display_metrics/display_metrics.dart';
 import 'package:flutter/material.dart';
 
-class MetricsScreen extends StatelessWidget {
+class MetricsScreen extends StatefulWidget {
   const MetricsScreen({super.key});
 
   @override
+  State<MetricsScreen> createState() => _MetricsScreenState();
+}
+
+class _MetricsScreenState extends State<MetricsScreen> {
+  bool _isInitializing = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // call DisplayMetrics.ensureInitialized(context) to ensure
+    // DisplayMetricsData has been loaded
+    DisplayMetrics.ensureInitialized(context)?.then((data) {
+      if (_isInitializing) {
+        debugPrint('DisplayMetrics initialized with data [$data]');
+        setState(() {
+          _isInitializing = false;
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // call DisplayMetrics.maybeOf(context) or DisplayMetrics.of(context)
-    // to get DisplayMetricsData
-    final metrics = DisplayMetrics.maybeOf(context);
-    if (metrics == null) {
+    // if you want, you can show loading widget
+    // while DisplayMetrics is initializing
+    if (_isInitializing) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     }
+
+    // call DisplayMetrics.maybeOf(context)
+    // or DisplayMetrics.of(context)
+    // to get DisplayMetricsData
+    final metrics = DisplayMetrics.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Display metrics example app'),
@@ -53,7 +80,7 @@ class DisplayInfoWidget extends StatelessWidget {
     super.key,
   });
 
-  final DisplayMetricsData? metrics;
+  final DisplayMetricsData metrics;
 
   @override
   Widget build(BuildContext context) {
@@ -66,29 +93,29 @@ class DisplayInfoWidget extends StatelessWidget {
           children: [
             MetricsLabel(
               title: 'ppi',
-              value: '${metrics?.ppi.toStringAsFixed(0)}',
+              value: metrics.ppi.toStringAsFixed(0),
             ),
             MetricsLabel(
               title: 'devicePixelRatio',
-              value: '${metrics?.devicePixelRatio.toStringAsFixed(0)}',
+              value: metrics.devicePixelRatio.toStringAsFixed(0),
             ),
             MetricsLabel(
               title: 'inchesToLogicalPixelRatio',
-              value: '${metrics?.inchesToLogicalPixelRatio.toStringAsFixed(0)}',
+              value: metrics.inchesToLogicalPixelRatio.toStringAsFixed(0),
             ),
             MetricsLabel(
               title: 'diagonal (inches)',
-              value: '${metrics?.diagonal.toStringAsFixed(2)}',
+              value: metrics.diagonal.toStringAsFixed(2),
             ),
             MetricsLabel(
               title: 'physicalSize (inches)',
-              value: '${metrics?.physicalSize.width.toStringAsFixed(2)} (w) x '
-                  '${metrics?.physicalSize.height.toStringAsFixed(2)} (h)',
+              value: '${metrics.physicalSize.width.toStringAsFixed(2)} (w) x '
+                  '${metrics.physicalSize.height.toStringAsFixed(2)} (h)',
             ),
             MetricsLabel(
               title: 'resolution (pixels)',
-              value: '${metrics?.resolution.width.toStringAsFixed(0)} (w) x '
-                  '${metrics?.resolution.height.toStringAsFixed(0)} (h)',
+              value: '${metrics.resolution.width.toStringAsFixed(0)} (w) x '
+                  '${metrics.resolution.height.toStringAsFixed(0)} (h)',
             ),
           ],
         ),

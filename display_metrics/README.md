@@ -13,7 +13,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  display_metrics: ^1.0.0
+  display_metrics: ^1.1.0
 ```
 
 In your library add the following import:
@@ -52,7 +52,7 @@ class ExampleApp extends StatelessWidget {
 
 ### DisplayMetricsData
 
-To access DisplayMetricsData you can call 
+To access `DisplayMetricsData` you can call 
 ```dart
 final metrics = DisplayMetrics.maybeOf(context);
 // or
@@ -79,6 +79,8 @@ metrics.inchesToLogicalPixelRatio => double
 // MediaQuery`s devicePixelRatio;
 metrics.devicePixelRatio => double 
 ```
+
+You can await for `DisplayMetrics.ensureInitialized(context)` to ensure that `DisplayMetricsData` is available.
 
 ### Convert units
 To convert inches and millimeters into Flutter logical pixels and vice versa you can call one of BuildContext extension methods:

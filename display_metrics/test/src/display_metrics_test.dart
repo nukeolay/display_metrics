@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:display_metrics/display_metrics.dart';
 
@@ -6,6 +10,73 @@ import 'utils/widgets.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  const channel = MethodChannel('display_metrics');
+  setUp(
+    () {
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(
+        channel,
+        (MethodCall methodCall) async {
+          await Future.delayed(const Duration(seconds: 4));
+          if (methodCall.method == 'getResolution') {
+            return {'width': 480, 'height': 640};
+          } else if (methodCall.method == 'getSize') {
+            return {'width': 3, 'height': 4};
+          }
+          return null;
+        },
+      );
+    },
+  );
+
+  tearDown(
+    () {
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, null);
+    },
+  );
+
+  testWidgets(
+    'DisplayMetrics ensureInitialized',
+    (WidgetTester tester) async {
+      Future<DisplayMetricsData>? ensureInitialized;
+
+      await tester.pumpWidget(
+        DisplayMetricsWidget(
+          updateSizeOnRotate: true,
+          child: MaterialApp(
+            home: Scaffold(
+              body: DisplayMetricsTestWidget(
+                onBuild: (context) async {
+                  ensureInitialized = DisplayMetrics.ensureInitialized(context);
+                },
+              ),
+            ),
+          ),
+        ),
+        duration: Duration.zero,
+      );
+      await tester.pump(const Duration(seconds: 10));
+      final displayMetricsData = await ensureInitialized;
+      final platform = Platform.operatingSystem;
+      if (kIsWeb) {
+        expect(displayMetricsData != null, true);
+        return;
+      }
+      switch (platform) {
+        case 'android':
+        case 'ios':
+        case 'windows':
+        case 'macos':
+        case 'linux':
+          expect(displayMetricsData != null, true);
+          break;
+        default:
+          expect(displayMetricsData == null, true);
+      }
+    },
+  );
 
   const data = DisplayMetricsData(
     physicalSize: Size(3, 4),

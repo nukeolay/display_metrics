@@ -1,3 +1,8 @@
+## 1.1.0
+* Added *ensureInitialized* method
+* Added *mounted* check
+* Updated *display_metrics_ios* dependency (added Spring 2025 iOS devices support: iPhone 16e, iPad Air M3 (7th gen) 11", 13", iPad A16 (11th gen) 11")
+
 ## 1.0.0
 * Added **Linux** platform support
 

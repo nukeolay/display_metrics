@@ -1,3 +1,8 @@
+## 1.1.0
+* Multi-display, foldable devices support
+* Added *getDisplays* method
+* Added **PhysicalDisplayData** class
+
 ## 1.0.3
 * Updated documentation
 

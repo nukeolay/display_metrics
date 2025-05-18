@@ -40,4 +40,18 @@ class DisplayMetricsPlugin extends DisplayMetricsPlatform {
       resolution.height / dpi,
     );
   }
+
+  @override
+  Future<List<PhysicalDisplayData>> getDisplays() async {
+    final size = await getSize();
+    final resolution = await getResolution();
+    if (size == null || resolution == null) return const [];
+    return [
+      PhysicalDisplayData(
+        physicalSize: size,
+        resolution: resolution,
+        isPrimary: true,
+      ),
+    ];
+  }
 }

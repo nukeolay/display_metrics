@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:display_metrics_android/display_metrics_android.dart';
@@ -21,13 +21,22 @@ class _MyAppState extends State<MyApp> {
   String? _resolutionError;
   Size? _size;
   String? _sizeError;
+  List<PhysicalDisplayData>? _displays;
+  String? _displaysError;
 
   @override
   void initState() {
     super.initState();
     _displayMetricsPlugin = DisplayMetricsAndroid();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    MediaQuery.of(context);
     _getResolution();
     _getSize();
+    _getDisplays();
   }
 
   Future<void> _getResolution() async {
@@ -58,6 +67,20 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  Future<void> _getDisplays() async {
+    try {
+      final displays = await _displayMetricsPlugin.getDisplays();
+      setState(() {
+        _displays = displays;
+        _displaysError = null;
+      });
+    } on PlatformException {
+      setState(() {
+        _displaysError = 'Failed to get displays';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,14 +88,27 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('display resolution: ${_resolution ?? _resolutionError}'),
-              Text('display size: ${_size ?? _sizeError}'),
-            ],
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('display resolution: ${_resolution ?? _resolutionError}'),
+            const Divider(),
+            Text('display size: ${_size ?? _sizeError}'),
+            const Divider(),
+            const Text('displays:'),
+            if (_displaysError != null)
+              Text(
+                _displaysError!,
+                textAlign: TextAlign.center,
+              ),
+            if (_displays != null)
+              ..._displays!.map(
+                (display) => Text(
+                  display.toString(),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+          ],
         ),
       ),
     );

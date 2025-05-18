@@ -31,39 +31,61 @@ class DisplayMetricsAndroidPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   private fun getSize(): Pair<Double, Double> {
-    val (width, height) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-      val displayManager = context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
-      val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)
-      val metrics = DisplayMetrics()
-      display.getRealMetrics(metrics)
-      Pair(
-        (metrics.widthPixels / metrics.xdpi).toDouble(),
-        (metrics.heightPixels / metrics.ydpi).toDouble()
-      )
-    } else {
-      val manager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-      val metrics = DisplayMetrics()
-      manager.defaultDisplay.getRealMetrics(metrics)
-      Pair(
-        (metrics.widthPixels / metrics.xdpi).toDouble(),
-        (metrics.heightPixels / metrics.ydpi).toDouble()
-      )
-    }
+    val primary = getDisplays().firstOrNull { it["isPrimary"] == true } ?: return 0.0 to 0.0
+    val size = primary["size"] as Map<*, *>
+    val width = (size["width"] as Number).toDouble()
+    val height = (size["height"] as Number).toDouble()
     return width to height
   }
 
   private fun getResolution(): Pair<Int, Int> {
-    val manager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-    val (width, height) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-      val bounds = manager.currentWindowMetrics.bounds
-      Pair(bounds.width(), bounds.height())
-    } else {
-      val metrics = DisplayMetrics()
-      manager.defaultDisplay.getRealMetrics(metrics)
-      Pair(metrics.widthPixels, metrics.heightPixels)
-    }
+    val primary = getDisplays().firstOrNull { it["isPrimary"] == true } ?: return 0 to 0
+    val resolution = primary["resolution"] as Map<*, *>
+    val width = (resolution["width"] as Number).toInt()
+    val height = (resolution["height"] as Number).toInt()
     return width to height
   }
+
+  private fun getDisplays(): List<Map<String, Any>> {
+    val displayManager = context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+    val displays = displayManager.displays
+    val displayList = mutableListOf<Map<String, Any>>()
+
+    for (display in displays) {
+      val metrics = DisplayMetrics()
+      display.getRealMetrics(metrics)
+
+      val widthPixels = metrics.widthPixels
+      val heightPixels = metrics.heightPixels
+      val xDpi = metrics.xdpi
+      val yDpi = metrics.ydpi
+
+      if (xDpi == 0f || yDpi == 0f) continue
+
+      val widthInches = widthPixels / xDpi
+      val heightInches = heightPixels / yDpi
+
+      val sizeMap = mapOf(
+       "width" to widthInches,
+       "height" to heightInches
+      )
+
+      val resolutionMap = mapOf(
+        "width" to widthPixels,
+        "height" to heightPixels
+      )
+
+      val displayMap = mutableMapOf<String, Any>(
+        "size" to sizeMap,
+        "resolution" to resolutionMap,
+        "isPrimary" to (display.displayId == Display.DEFAULT_DISPLAY)
+      )
+
+    displayList.add(displayMap)
+  }
+
+  return displayList
+}
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     when (call.method) {
@@ -76,6 +98,11 @@ class DisplayMetricsAndroidPlugin: FlutterPlugin, MethodCallHandler {
       "getResolution" -> {
         val resolution = getResolution()
         result.success(mapOf("width" to resolution.first, "height" to resolution.second))
+      }
+
+      "getDisplays" -> {
+        val displays = getDisplays()
+        result.success(displays)
       }
 
       else -> result.notImplemented()

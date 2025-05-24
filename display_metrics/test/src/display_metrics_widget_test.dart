@@ -79,12 +79,11 @@ void main() {
       );
 
       testWidgets(
-        'DisplayMetricsWidget updateSizeOnRotate: true',
+        'DisplayMetricsWidget _performUpdate',
         (WidgetTester tester) async {
           Future<DisplayMetricsData>? ensureInitialized;
           DisplayMetricsData? metrics;
           final testWidget = DisplayMetricsWidget(
-            updateSizeOnRotate: true,
             child: DisplayMetricsTestWidget(
               onBuild: (context) {
                 ensureInitialized = DisplayMetrics.ensureInitialized(context);
@@ -95,7 +94,9 @@ void main() {
           const size = Size(1206, 2622);
           await tester.pumpWidget(
             MediaQuery(
-                data: const MediaQueryData(size: size), child: testWidget),
+              data: const MediaQueryData(size: size),
+              child: testWidget,
+            ),
           );
           await tester.pumpAndSettle();
           await ensureInitialized;
@@ -103,44 +104,13 @@ void main() {
           final flippedSize = size.flipped;
           await tester.pumpWidget(
             MediaQuery(
-                data: MediaQueryData(size: flippedSize), child: testWidget),
+              data: MediaQueryData(size: flippedSize),
+              child: testWidget,
+            ),
           );
           await tester.pumpAndSettle();
           await ensureInitialized;
           expect(metrics?.resolution.aspectRatio, flippedSize.aspectRatio);
-        },
-      );
-
-      testWidgets(
-        'DisplayMetricsWidget updateSizeOnRotate: false',
-        (WidgetTester tester) async {
-          Future<DisplayMetricsData>? ensureInitialized;
-          DisplayMetricsData? metrics;
-          final testWidget = DisplayMetricsWidget(
-            updateSizeOnRotate: false,
-            child: DisplayMetricsTestWidget(
-              onBuild: (context) {
-                ensureInitialized = DisplayMetrics.ensureInitialized(context);
-                metrics = DisplayMetrics.maybeOf(context);
-              },
-            ),
-          );
-          const size = Size(1206, 2622);
-          await tester.pumpWidget(
-            MediaQuery(
-                data: const MediaQueryData(size: size), child: testWidget),
-          );
-          await tester.pumpAndSettle();
-          await ensureInitialized;
-          expect(metrics?.resolution.aspectRatio, size.aspectRatio);
-          final flippedSize = size.flipped;
-          await tester.pumpWidget(
-            MediaQuery(
-                data: MediaQueryData(size: flippedSize), child: testWidget),
-          );
-          await tester.pumpAndSettle();
-          await ensureInitialized;
-          expect(metrics?.resolution.aspectRatio, size.aspectRatio);
         },
       );
 
@@ -179,7 +149,7 @@ void main() {
           expect(handledError, isA<StateError>());
           expect(
             (handledError as StateError).message,
-            'Could not get devicePixelRatio from MediaQuery',
+            'Could not get MediaQuery from BuildContext',
           );
         },
       );

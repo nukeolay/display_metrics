@@ -1,4 +1,4 @@
-import 'package:display_metrics_platform_interface/display_metrics_method_channel.dart';
+import 'package:display_metrics_platform_interface/src/method_channel.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 

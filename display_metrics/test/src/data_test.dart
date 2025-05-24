@@ -5,10 +5,21 @@ import 'package:display_metrics/display_metrics.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  const data = DisplayMetricsData(
-    physicalSize: Size(3, 4),
-    resolution: Size(480, 640),
-    devicePixelRatio: 1,
+  late DisplayMetricsData data;
+
+  setUp(
+    () {
+      data = const DisplayMetricsData(
+        displays: [
+          ExtendedPhysicalDisplayData(
+            physicalSize: Size(3, 4),
+            resolution: Size(480, 640),
+            isPrimary: true,
+            devicePixelRatio: 1,
+          ),
+        ],
+      );
+    },
   );
 
   test(
@@ -33,18 +44,62 @@ void main() {
   );
 
   test(
-    'copyWith',
+    'devicePixelRatio',
+    () {
+      expect(data.devicePixelRatio, 1);
+    },
+  );
+
+  test(
+    'physicalSize',
+    () {
+      expect(data.physicalSize, const Size(3, 4));
+    },
+  );
+
+  test(
+    'DisplayMetricsData.copyWith',
     () {
       expect(
         data.copyWith(
-          devicePixelRatio: 2,
-          physicalSize: const Size(10, 10),
-          resolution: const Size(1000, 1000),
+          displays: [
+            data.displays.first.copyWith(
+              physicalSize: const Size(10, 10),
+              resolution: const Size(1000, 1000),
+              isPrimary: false,
+              devicePixelRatio: 2,
+            ),
+          ],
         ),
         const DisplayMetricsData(
+          displays: [
+            ExtendedPhysicalDisplayData(
+              physicalSize: Size(10, 10),
+              resolution: Size(1000, 1000),
+              isPrimary: false,
+              devicePixelRatio: 2,
+            ),
+          ],
+        ),
+      );
+    },
+  );
+
+  test(
+    'ExtendedPhysicalDisplayData.copyWith',
+    () {
+      expect(
+        data.displays.first.copyWith(
+          // physicalSize: const Size(10, 10),
+          resolution: const Size(1000, 1000),
+          isPrimary: false,
           devicePixelRatio: 2,
-          physicalSize: Size(10, 10),
+        ),
+        const ExtendedPhysicalDisplayData(
+          physicalSize: Size(3, 4),
           resolution: Size(1000, 1000),
+          isPrimary: false,
+          devicePixelRatio: 2,
         ),
       );
     },
@@ -65,20 +120,10 @@ void main() {
     () {
       expect(
         data.hashCode,
-        data.physicalSize.hashCode ^ data.resolution.hashCode,
-      );
-    },
-  );
-
-  test(
-    'toString',
-    () {
-      expect(
-        data.toString(),
-        'ppi: ${data.ppi}, '
-        'diagonal: ${data.diagonal} inches, '
-        'physicalSize: ${data.physicalSize.width}x${data.physicalSize.height} inches, '
-        'resolution: ${data.resolution.width}x${data.resolution.height} pixels',
+        data.displays.fold(
+          0,
+          (previousValue, element) => previousValue.hashCode ^ element.hashCode,
+        ),
       );
     },
   );

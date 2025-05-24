@@ -1,7 +1,7 @@
 name: display_metrics_macos
 description: macOS platform implementation of display_metrics plugin. This package will be automatically included in your app when you use display_metrics in macOS project 
 homepage: https://github.com/nukeolay/display_metrics/tree/main/display_metrics_macos
-version: 1.0.1
+version: 1.1.0
 
 environment:
   sdk: '>=3.1.2 <4.0.0'
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  display_metrics_platform_interface: ^1.0.3
+  display_metrics_platform_interface: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -19,9 +19,6 @@ class ExampleApp extends StatelessWidget {
     // add DisplayMetricsWidget to Widget tree above MaterialApp to use
     // DisplayMetrics.of(context) and BuildContext extension methods
     return DisplayMetricsWidget(
-      // Set this to true if you need to update size
-      // when orientation of your device changes
-      updateSizeOnRotate: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(

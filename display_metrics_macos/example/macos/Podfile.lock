@@ -1,5 +1,5 @@
 PODS:
-  - display_metrics_macos (0.0.1):
+  - display_metrics_macos (1.1.0):
     - FlutterMacOS
   - FlutterMacOS (1.0.0)
 
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral
 
 SPEC CHECKSUMS:
-  display_metrics_macos: d59390b78282ba1faf844c9093b695427ad7a9b6
+  display_metrics_macos: 06eace1703bd23339badde48e47916ee07855136
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
 
 PODFILE CHECKSUM: 236401fc2c932af29a9fcf0e97baeeb2d750d367
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

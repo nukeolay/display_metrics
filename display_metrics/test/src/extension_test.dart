@@ -7,9 +7,14 @@ import 'utils/widgets.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   const data = DisplayMetricsData(
-    physicalSize: Size(1, 1),
-    resolution: Size(1, 1),
-    devicePixelRatio: 1,
+    displays: [
+      ExtendedPhysicalDisplayData(
+        physicalSize: Size(1, 1),
+        resolution: Size(1, 1),
+        devicePixelRatio: 1,
+        isPrimary: true,
+      ),
+    ],
   );
 
   testWidgets(

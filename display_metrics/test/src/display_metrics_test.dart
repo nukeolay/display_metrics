@@ -44,7 +44,6 @@ void main() {
 
       await tester.pumpWidget(
         DisplayMetricsWidget(
-          updateSizeOnRotate: true,
           child: MaterialApp(
             home: Scaffold(
               body: DisplayMetricsTestWidget(
@@ -79,9 +78,14 @@ void main() {
   );
 
   const data = DisplayMetricsData(
-    physicalSize: Size(3, 4),
-    resolution: Size(480, 640),
-    devicePixelRatio: 1,
+    displays: [
+      ExtendedPhysicalDisplayData(
+        physicalSize: Size(3, 4),
+        resolution: Size(480, 640),
+        devicePixelRatio: 1,
+        isPrimary: true,
+      ),
+    ],
   );
 
   testWidgets(
@@ -144,7 +148,11 @@ void main() {
     (WidgetTester tester) async {
       DisplayMetricsData? displayMetricsData;
       final updatedData = data.copyWith(
-        physicalSize: const Size(1, 1),
+        displays: [
+          data.displays.first.copyWith(
+            physicalSize: const Size(1, 1),
+          ),
+        ],
       );
 
       await tester.pumpWidget(

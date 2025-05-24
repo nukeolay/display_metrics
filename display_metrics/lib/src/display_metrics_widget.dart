@@ -10,15 +10,11 @@ class DisplayMetricsWidget extends StatefulWidget {
   /// DisplayMetrics.of(context) and BuildContext extension methods
   const DisplayMetricsWidget({
     required this.child,
-    this.updateSizeOnRotate = false,
     super.key,
   });
 
   /// Widget that will be displayed
   final Widget child;
-
-  /// Set this to true if you need to update size when orientation of your device changes
-  final bool updateSizeOnRotate;
 
   @override
   State<DisplayMetricsWidget> createState() => _DisplayMetricsWidgetState();
@@ -40,13 +36,15 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
+    // subscribe for size update to track if size of display has been changed
+    // so we will update DisplayMetricsData
+    // ! this line causes multiple rebuilds, so its now disabled
+    // MediaQuery.maybeSizeOf(context);
     final devicePixelRatio = MediaQuery.maybeDevicePixelRatioOf(context);
-    final orientation =
-        widget.updateSizeOnRotate ? MediaQuery.orientationOf(context) : null;
+    final orientation = MediaQuery.maybeOrientationOf(context);
 
-    if (devicePixelRatio == null) {
-      _handlePixelRatioError();
+    if (devicePixelRatio == null || orientation == null) {
+      _handlMediaQueryError();
       return;
     }
 
@@ -56,23 +54,20 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
       return;
     }
 
-    if (widget.updateSizeOnRotate) {
-      debugPrint('Orientation changed: $orientation');
-      unawaited(_performUpdate(devicePixelRatio, orientation));
-    }
+    unawaited(_performUpdate(devicePixelRatio, orientation));
   }
 
-  void _handlePixelRatioError() {
+  void _handlMediaQueryError() {
     if (_initialLoadAttempted) return;
     _maybeCompleteWithError(
-      StateError('Could not get devicePixelRatio from MediaQuery'),
+      StateError('Could not get MediaQuery from BuildContext'),
       StackTrace.current,
     );
   }
 
   Future<void> _performInitialLoad(
     double devicePixelRatio,
-    Orientation? orientation,
+    Orientation orientation,
   ) async {
     try {
       final data = await _updateData(devicePixelRatio, orientation);
@@ -103,7 +98,7 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
 
   Future<void> _performUpdate(
     double devicePixelRatio,
-    Orientation? orientation,
+    Orientation orientation,
   ) async {
     try {
       final data = await _updateData(devicePixelRatio, orientation);
@@ -117,16 +112,24 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
 
   Future<DisplayMetricsData?> _updateData(
     double devicePixelRatio,
-    Orientation? orientation,
+    Orientation orientation,
   ) async {
-    final physicalSize = await DisplayMetricsPlatform.instance.getSize();
-    final resolution = await DisplayMetricsPlatform.instance.getResolution();
-    if (physicalSize == null || resolution == null) return null;
-    return DisplayMetricsData(
-      physicalSize: physicalSize.byOrientation(orientation),
-      resolution: resolution.byOrientation(orientation),
-      devicePixelRatio: devicePixelRatio,
-    );
+    final displays = await DisplayMetricsPlatform.instance.getDisplays();
+    final extendedDisplays = displays.map((display) {
+      return ExtendedPhysicalDisplayData.fromDisplayData(
+        display,
+        devicePixelRatio: devicePixelRatio,
+      );
+    });
+    final updatedDisplays = extendedDisplays.map((display) {
+      return display.copyWith(
+        physicalSize: display.physicalSize.byOrientation(orientation),
+        resolution: display.resolution.byOrientation(orientation),
+        devicePixelRatio: devicePixelRatio,
+      );
+    }).toList();
+    if (displays.isEmpty) return null;
+    return DisplayMetricsData(displays: updatedDisplays);
   }
 
   void _maybeCompleteWithError(Object error, StackTrace stackTrace) {

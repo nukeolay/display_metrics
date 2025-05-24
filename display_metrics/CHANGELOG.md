@@ -1,3 +1,10 @@
+## 2.0.0
+* [BREAKING CHANGE]:
+  * Removed *updateSizeOnRotate* from **DisplayMetricsWidget**
+* Multi-display, foldable devices support (Android)
+* Implemented *getDisplays* method
+* Updated dependencies
+
 ## 1.1.0
 * Added *ensureInitialized* method
 * Added *mounted* check

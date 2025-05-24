@@ -60,24 +60,30 @@ final metrics = DisplayMetrics.of(context);
 ```
 
 ```dart
-// Device's screen physical size in inches
+// Device's primary screen physical size in inches
 metrics.physicalSize => Size
 
-// Device's screen resolution in real pixels
+// Device's primary screen resolution in real pixels
 metrics.resolution => Size
 
-// Device's screen diagonal in inches
+// Device's primary screen diagonal in inches
 metrics.diagonal => double
 
-// Device's screen pixels per inch (PPI)
+// Device's primary screen pixels per inch (PPI)
 metrics.ppi => double 
 
-// The number of logical pixels on the device's screen
+// The number of logical pixels on the device's primary screen
 // that corresponds to one inch
-metrics.inchesToLogicalPixelRatio => double 
+metrics.inchesToLogicalPixelRatio => double
 
-// MediaQuery`s devicePixelRatio;
-metrics.devicePixelRatio => double 
+// MediaQuery`s devicePixelRatio
+metrics.devicePixelRatio => double
+
+// List of all available displays metrics
+metrics.displays => List<ExtendedPhysicalDisplayData>
+
+// Display metrics data of promary display
+metrics.primaryDisplay => ExtendedPhysicalDisplayData
 ```
 
 You can await for `DisplayMetrics.ensureInitialized(context)` to ensure that `DisplayMetricsData` is available.
@@ -102,24 +108,22 @@ context.pixelsToMm(int pixels);
 ```dart
 // Add [DisplayMetricsWidget] to Widget tree above MaterialApp to use DisplayMetrics.of(context) and BuildContext extension methods
 DisplayMetricsWidget(
-  // Set [updateSizeOnRotate] to true if you need to update size when orientation of your device changes
-  updateSizeOnRotate: true,
   child: child,
 );
 ```
 
 ## Supported Platforms
 
-| Platform | Support |
-|----------|:-------:|
-| iOS      | ✅ |
-| Android  | ✅ |
-| Windows  | ✅ |
-| macOS    | ✅ |
-| Linux    | ✅ |
-| Web      | ✅<br>please read<br>the [limitations](#limitations) |
+| Platform | Support | Multi-Display |
+|----------|:-------:|:-------------:|
+| iOS      | ✅ | ❌ |
+| Android  | ✅ | ✅<br>please read<br>the [foldable devices](#foldable-devices) |
+| Windows  | ✅ | ❌ |
+| macOS    | ✅ | ❌ |
+| Linux    | ✅ | ❌ |
+| Web      | ✅<br>please read<br>the [limitations](#web-limitations) | ❌ |
 
-## Limitations
+## Web limitations
 
 Due to browser limitations, it's not possible to accurately determine 
 the physical screen dimensions or the actual DPI on 
@@ -128,6 +132,18 @@ a physical pixel but a unit based on a reference pixel,
 defined as 1/96th of an inch. This system depends on the viewing angle of 
 the device and varies across displays, making it impossible to obtain 
 accurate physical measurements or DPI through web APIs. You can read more [here][1].
+
+## Foldable devices
+
+On Android, this package now supports foldable and multi-display devices. When used on a device like the Pixel Fold, the plugin can detect the current active display and report its correct size - whether folded or unfolded.
+
+Additionally, the `displays` getter returns a list of all connected displays (including external displays, if present).
+
+Please note:
+* The display list may contain multiple entries depending on the device and configuration.
+* Each display includes its resolution in pixels, DPI, and a flag indicating whether it's the primary display.
+* Testing has been performed using the Pixel Fold emulator.
+* This feature is currently only supported on Android. Other platforms will always return a single display representing the main screen.
 
 ## Credits
 

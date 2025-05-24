@@ -7,21 +7,6 @@ Flutter plugin that provides display metrics such as real screen resolution, phy
 * Get real screen resolution, display size (inches) and PPI
 * Convert inches and millimeters into Flutter logical pixels
 
-## Install
-
-In the `pubspec.yaml` of your flutter project, add the following dependency:
-
-```yaml
-dependencies:
-  display_metrics: ^1.1.0
-```
-
-In your library add the following import:
-
-```dart
-import 'package:display_metrics/display_metrics.dart';
-```
-
 ## Getting started
 
 ```dart

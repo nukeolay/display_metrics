@@ -1,3 +1,6 @@
+## 2.0.1
+* README.md updated
+
 ## 2.0.0
 * [BREAKING CHANGE]:
   * Removed *updateSizeOnRotate* from **DisplayMetricsWidget**

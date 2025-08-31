@@ -1,5 +1,6 @@
 import 'dart:ui';
-import 'dart:html' as html;
+
+import 'package:web/web.dart' as web;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:display_metrics_platform_interface/display_metrics_platform_interface.dart';
@@ -15,11 +16,10 @@ class DisplayMetricsPlugin extends DisplayMetricsPlatform {
 
   @override
   Future<Size?> getResolution() async {
-    final devicePixelRatio = html.window.devicePixelRatio;
-    final screen = html.window.screen;
-    final width = screen?.width?.toDouble();
-    final height = screen?.height?.toDouble();
-    if (width == null || height == null) return null;
+    final devicePixelRatio = web.window.devicePixelRatio;
+    final screen = web.window.screen;
+    final width = screen.width.toDouble();
+    final height = screen.height.toDouble();
     return Size(
       width * devicePixelRatio,
       height * devicePixelRatio,
@@ -30,9 +30,9 @@ class DisplayMetricsPlugin extends DisplayMetricsPlatform {
   Future<Size?> getSize() async {
     final resolution = await getResolution();
     if (resolution == null) return null;
-    final div = html.DivElement();
+    final div = web.document.createElement('div') as web.HTMLDivElement;
     div.style.width = '1in';
-    html.document.body!.append(div);
+    web.document.body!.append(div);
     final dpi = div.offsetWidth;
     div.remove();
     return Size(

@@ -1,3 +1,6 @@
+## 2.1.0
+* WASM support
+
 ## 2.0.1
 * README.md updated
 

@@ -1,3 +1,6 @@
+## 2.1.1
+* Fixed issue with *ensureInitialized* method
+
 ## 2.1.0
 * WASM support
 

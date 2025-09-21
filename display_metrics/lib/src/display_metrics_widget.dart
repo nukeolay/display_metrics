@@ -86,7 +86,9 @@ class _DisplayMetricsWidgetState extends State<DisplayMetricsWidget> {
 
       if (_loadCompleter.isCompleted) return;
 
-      _loadCompleter.complete(data);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _loadCompleter.complete(data);
+      });
     } catch (error, stackTrace) {
       debugPrint(
         'Unexpected error '

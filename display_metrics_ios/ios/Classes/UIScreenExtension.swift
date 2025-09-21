@@ -78,12 +78,12 @@ public extension UIScreen {
             return 6.1
 
         case "iPhone17,1":                                     fallthrough // iPhone 16 Pro
-        case "iPhone18,1":                                     fallthrough // iPhone 17 Pro    
+        case "iPhone18,1":                                     fallthrough // iPhone 17 Pro
         case "iPhone18,3":                                                 // iPhone 17
             return 6.3
         
         case "iPhone17,2":                                     fallthrough // iPhone 16 Pro Max
-        case "iPhone18,2":                                                 // iPhone 17 Pro Max    
+        case "iPhone18,2":                                                 // iPhone 17 Pro Max
             return 6.9
             
         case "iPhone11,4", "iPhone11,6":                       fallthrough // iPhone XS Max

@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   display_metrics_platform_interface: ^1.1.0
   display_metrics_android: ^1.1.0
-  display_metrics_ios: ^1.1.0
+  display_metrics_ios: ^1.2.0
   display_metrics_windows: ^1.1.0
   display_metrics_macos: ^1.1.0
   display_metrics_web:  ^0.2.0
@@ -44,4 +44,4 @@ topics:
   - ppi
   - size
   - resolution
-  - pixels
+  - pixel

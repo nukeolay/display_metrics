@@ -1,3 +1,10 @@
+## 2.2.0
+* Added Fall 2025 iOS devices support (thanks @rotsen24154):
+  * iPhone 17
+  * iPhone 17 Pro
+  * iPhone 17 Pro Max
+  * iPhone 17 Air
+
 ## 2.1.0
 * WASM support
 

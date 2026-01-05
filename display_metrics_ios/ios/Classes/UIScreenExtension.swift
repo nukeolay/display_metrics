@@ -105,7 +105,8 @@ public extension UIScreen {
         case "iPad4,7", "iPad4,8", "iPad4,9":                  fallthrough // iPad Mini 3
         case "iPad5,1", "iPad5,2":                             fallthrough // iPad Mini 4
         case "iPad11,1", "iPad11,2":                           fallthrough // iPad Mini 5
-        case "iPad14,1", "iPad14,2":                                       // iPad Mini 6
+        case "iPad14,1", "iPad14,2":                           fallthrough // iPad Mini 6
+        case "iPad16,1", "iPad16,2":                                       // iPad Mini 7
             return 7.9
             
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":       fallthrough // iPad 2

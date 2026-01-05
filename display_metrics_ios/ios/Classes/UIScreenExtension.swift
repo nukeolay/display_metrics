@@ -140,11 +140,13 @@ public extension UIScreen {
         case "iPad14,8", "iPad14,9":                           fallthrough // iPad Air (11 inch, 6th generation)
         case "iPad16,3", "iPad16,4":                           fallthrough // iPad Pro (11 inch, 7th generation)
         case "iPad15,3", "iPad15,4":                           fallthrough // iPad Air (11 inch, 7th generation)
+        case "iPad17,1", "iPad17,2":                           fallthrough // iPad Pro (11 inch, 8th generation)
         case "iPad15,7", "iPad15,8":                                       // iPad 11th generation
             return 11.0
             
         case "iPad14,10", "iPad14,11":                         fallthrough // iPad Air (13 inch, 6th generation)
         case "iPad16,5", "iPad16,6":                           fallthrough // iPad Pro (13 inch, 7th generation)
+        case "iPad17,3", "iPad17,4":                           fallthrough // iPad Pro (13 inch, 8th generation)
         case "iPad15,5", "iPad15,6":                                       // iPad Air (13 inch, 7th generation)
             return 13.0
 

@@ -25,7 +25,7 @@ class ExampleApp extends StatelessWidget {
           useMaterial3: true,
         ).copyWith(
           appBarTheme: AppBarTheme(
-            color: Colors.blue.shade900,
+            backgroundColor: Colors.blue.shade900,
             foregroundColor: Colors.white,
           ),
           colorScheme: const ColorScheme.light().copyWith(

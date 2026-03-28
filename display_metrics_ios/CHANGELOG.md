@@ -1,3 +1,14 @@
+## 1.3.0
+* Added Spring 2026 device mappings:
+  * iPhone 17e
+  * iPad Air M4 11"
+  * iPad Air M4 13"
+* Added missing device mappings:
+  * iPad mini 7 (2024)
+  * iPad Pro M5 11" (2025)
+  * iPad Pro M5 13" (2025)
+* Corrected iPad mini (6th gen) sizing from 7.9" to 8.3"
+
 ## 1.2.0
 * Added Fall 2025 iOS devices support (thanks @rotsen24154):
   * iPhone 17

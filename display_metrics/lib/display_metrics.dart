@@ -1,4 +1,4 @@
-library display_metrics;
+library;
 
 export 'src/data.dart';
 export 'src/display_metrics.dart';

@@ -154,10 +154,10 @@ class UnitSelector extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
-        Radio<RulerUnits>(
-          value: value,
+        RadioGroup<RulerUnits>(
           groupValue: selectedValue,
           onChanged: onChange,
+          child: Radio<RulerUnits>(value: value),
         ),
       ],
     );

@@ -108,6 +108,14 @@ DisplayMetricsWidget(
 | Linux    | ✅ | ❌ |
 | Web      | ✅<br>please read<br>the [limitations](#web-limitations) | ❌ |
 
+### Swift Package Manager
+
+Starting with `display_metrics` 2.4.0, the iOS and macOS implementations
+support both Swift Package Manager (SPM) and CocoaPods. Apps with Flutter's
+SPM integration enabled can use the plugin through SPM, while apps that use
+CocoaPods continue to work without changes. See [Flutter's SPM guide][3] for
+instructions on enabling SPM in an app.
+
 ## Web limitations
 
 Due to browser limitations, it's not possible to accurately determine 
@@ -136,3 +144,4 @@ iOS implementation uses Jens Schwarzer's [UIScreenExtension][2]
 
 [1]: https://stackoverflow.com/questions/21680629/getting-the-physical-screen-dimensions-dpi-pixel-density-in-chrome-on-androi
 [2]: https://github.com/marchv/UIScreenExtension
+[3]: https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers

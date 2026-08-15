@@ -1,20 +1,14 @@
 PODS:
-  - display_metrics_ios (1.0.5):
-    - Flutter
   - Flutter (1.0.0)
 
 DEPENDENCIES:
-  - display_metrics_ios (from `.symlinks/plugins/display_metrics_ios/ios`)
   - Flutter (from `Flutter`)
 
 EXTERNAL SOURCES:
-  display_metrics_ios:
-    :path: ".symlinks/plugins/display_metrics_ios/ios"
   Flutter:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  display_metrics_ios: 0f09f458b00d18e9f3760172e16b168d88e44ea3
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
 
 PODFILE CHECKSUM: 5a35c580073c859afffb38a6a140f34612def22c

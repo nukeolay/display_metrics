@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'display_metrics_ios'
-  s.version          = '1.0.5'
+  s.version          = '1.0.6'
   s.summary          = 'Flutter plugin to retrieve device display metrics (resolution, size, PPI, diagonal). Convert inches & mm to Flutter logical pixels.'
   s.description      = <<-DESC
 A new Flutter plugin project.
@@ -13,7 +13,8 @@ A new Flutter plugin project.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'nukeolay@gmail.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'display_metrics_ios/Sources/display_metrics_ios/**/*.swift'
+  s.resource_bundles = {'display_metrics_ios_privacy' => ['display_metrics_ios/Sources/display_metrics_ios/PrivacyInfo.xcprivacy']}
   s.dependency 'Flutter'
   s.platform = :ios, '12.0'
 

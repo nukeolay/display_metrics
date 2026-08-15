@@ -1,3 +1,6 @@
+## 1.2.0
+* Added Swift Package Manager compatibility
+
 ## 1.1.0
 * Updated *display_metrics_platform_interface* dependency (1.1.0)
 

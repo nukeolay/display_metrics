@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'display_metrics_macos'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = 'Flutter plugin to retrieve device display metrics (resolution, size, PPI, diagonal). Convert inches & mm to Flutter logical pixels.'
   s.description      = <<-DESC
 A new Flutter plugin project.
@@ -14,10 +14,10 @@ A new Flutter plugin project.
   s.author           = { 'Your Company' => 'nukeolay@gmail.com' }
 
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'display_metrics_macos/Sources/display_metrics_macos/**/*.swift'
   s.dependency 'FlutterMacOS'
 
-  s.platform = :osx, '10.11'
+  s.platform = :osx, '10.13'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end

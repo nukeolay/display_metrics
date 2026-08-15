@@ -1,3 +1,6 @@
+## 1.4.0
+* Added Swift Package Manager compatibility
+
 ## 1.3.0
 * Added Spring 2026 device mappings:
   * iPhone 17e

@@ -1,3 +1,6 @@
+## 2.4.0
+* Added Swift Package Manager compatibility
+
 ## 2.3.0
 * Added Spring 2026 Apple devices support:
   * iPhone 17e

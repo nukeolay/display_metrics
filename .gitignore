@@ -30,3 +30,6 @@ pubspec.lock
 build/
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# FVM
+.fvmrc

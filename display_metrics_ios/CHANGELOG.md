@@ -1,3 +1,8 @@
+## 1.5.0
+* Added Fall 2026 device mappings:
+  * iPhone 18 Pro
+  * iPhone 18 Pro Max
+
 ## 1.4.0
 * Added Swift Package Manager compatibility
 
@@ -20,7 +25,7 @@
   * iPhone 17 Air
 
 ## 1.1.0
-* Updated *display_metrics_platform_interface* dependency (1.1.0)
+* Updated `display_metrics_platform_interface` dependency (1.1.0)
 
 ## 1.0.3
 * Added Spring 2025 iOS devices support:

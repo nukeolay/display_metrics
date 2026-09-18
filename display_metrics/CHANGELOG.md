@@ -1,3 +1,8 @@
+## 2.5.0
+* Added Fall 2026 Apple devices support:
+  * iPhone 18 Pro
+  * iPhone 18 Pro Max
+
 ## 2.4.0
 * Added Swift Package Manager compatibility
 
@@ -13,7 +18,7 @@
 * Corrected iPad mini (6th gen) sizing from 7.9" to 8.3"
 
 ## 2.2.1
-* Fixed issue with *ensureInitialized* method
+* Fixed issue with `ensureInitialized` method
 
 ## 2.2.0
 * Added Fall 2025 iOS devices support (thanks @rotsen24154):
@@ -30,15 +35,15 @@
 
 ## 2.0.0
 * [BREAKING CHANGE]:
-  * Removed *updateSizeOnRotate* from **DisplayMetricsWidget**
+  * Removed `updateSizeOnRotate` from `DisplayMetricsWidget`
 * Multi-display, foldable devices support (Android)
-* Implemented *getDisplays* method
+* Implemented `getDisplays` method
 * Updated dependencies
 
 ## 1.1.0
-* Added *ensureInitialized* method
-* Added *mounted* check
-* Updated *display_metrics_ios* dependency (added Spring 2025 iOS devices support: iPhone 16e, iPad Air M3 (7th gen) 11", 13", iPad A16 (11th gen) 11")
+* Added `ensureInitialized` method
+* Added `mounted` check
+* Updated `display_metrics_ios` dependency (added Spring 2025 iOS devices support: iPhone 16e, iPad Air M3 (7th gen) 11", 13", iPad A16 (11th gen) 11")
 
 ## 1.0.0
 * Added **Linux** platform support
@@ -54,7 +59,7 @@
 * Added **Web** platform support
 
 ## 0.4.1
-* Updated dependencies in *example*
+* Updated dependencies in `example`
 * Fixed code formatting issues
 
 ## 0.4.0

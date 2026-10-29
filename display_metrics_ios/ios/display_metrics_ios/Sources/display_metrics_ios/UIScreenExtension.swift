@@ -24,9 +24,36 @@ private func computeIfSome<T: Any, S: Any>(optional: T?, computation: ((T) -> S)
 
 @available(iOS 9.0, *)
 public extension UIScreen {
-    
+
+    /// The screen the app is currently shown on
+    ///
+    /// The iPhone Duo (foldable) switches between its inner and outer display, but `UIScreen.main`
+    /// keeps reporting the outer one, so the screen of the foreground app scene is used there.
+    /// It is only used if it is one of the iPhone Duo displays, so external displays never mix
+    /// with the diagonal from the device table. All other devices keep using `UIScreen.main`.
+    internal static var current: UIScreen {
+        if #available(iOS 13.0, *), UIDevice.modelIdentifier == "iPhone19,4" {
+            let scenes = UIApplication.shared.connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .filter { $0.session.role == .windowApplication }
+            if let scene = scenes.first(where: { $0.activationState == .foregroundActive }) ?? scenes.first,
+               iPhoneDuoNativeLongSides.contains(scene.screen.nativeLongSide) {
+                return scene.screen
+            }
+        }
+        return main
+    }
+
+    /// Native long side in pixels of the iPhone Duo outer (1398x2034 px) and inner (2007x2853 px) display
+    private static let iPhoneDuoNativeLongSides: Set<CGFloat> = [2034, 2853]
+
+    /// The longer side of the native screen bounds in pixels
+    private var nativeLongSide: CGFloat { max(nativeBounds.width, nativeBounds.height) }
+
     /// The screen dimension in inches
-    static let diagonalInInches: CGFloat? = {
+    ///
+    /// Computed on every access, because foldable devices switch between displays of different sizes
+    static var diagonalInInches: CGFloat? {
         switch UIDevice.modelIdentifier {
         case "iPhone4,1":                                                  // iPhone 4S
             return 3.5
@@ -164,33 +191,39 @@ public extension UIScreen {
         case "iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11": fallthrough // iPad Pro (12.9 inch, 5th generation)
         case "iPad14,5", "iPad14,6":                                       // iPad Pro (12.9 inch, 6th generation)
             return 12.9
-            
+
+        case "iPhone19,4":                                                 // iPhone Duo (foldable)
+            // inner display: 7.6" (2007x2853 px), outer display: 5.4" (1398x2034 px)
+            return current.nativeLongSide > 2034 ? 7.6 : 5.4
+
         default:                                                           // unknown model identifier
             return .none
         }
-    }()
-    
+    }
+
     /// The number of pixels per inch for this device
-    static let pixelsPerInch: CGFloat? = computeIfSome(optional: dimensionInInches, computation: { main.nativeBounds.height / $0.height })
-    
+    static var pixelsPerInch: CGFloat? { computeIfSome(optional: dimensionInInches, computation: { current.nativeBounds.height / $0.height }) }
+
     /// The number of pixels per centimeter for this device
-    static let pixelsPerCentimeter: CGFloat? = computeIfSome(optional: pixelsPerInch, computation: { $0 / 2.54 })
-    
+    static var pixelsPerCentimeter: CGFloat? { computeIfSome(optional: pixelsPerInch, computation: { $0 / 2.54 }) }
+
     /// The number of points per inch for this device
-    static let pointsPerInch: CGFloat? = computeIfSome(optional: pixelsPerInch, computation: { $0 / main.nativeScale })
-    
+    static var pointsPerInch: CGFloat? { computeIfSome(optional: pixelsPerInch, computation: { $0 / current.nativeScale }) }
+
     /// The number of points per centimeter for this device
-    static let pointsPerCentimeter: CGFloat? = computeIfSome(optional: pixelsPerCentimeter, computation: { $0 / main.nativeScale })
-    
+    static var pointsPerCentimeter: CGFloat? { computeIfSome(optional: pixelsPerCentimeter, computation: { $0 / current.nativeScale }) }
+
     /// The screen dimension in inches
-    static let dimensionInInches: CGSize? = computeIfSome(optional: diagonalInInches, computation: {
-        let ratio = main.nativeBounds.width / main.nativeBounds.height
-        let height = $0 / sqrt(pow(ratio, 2) + 1)
-        let width = ratio * height
-        return CGSize(width: width, height: height)
-    })
-    
+    static var dimensionInInches: CGSize? {
+        computeIfSome(optional: diagonalInInches, computation: {
+            let ratio = current.nativeBounds.width / current.nativeBounds.height
+            let height = $0 / sqrt(pow(ratio, 2) + 1)
+            let width = ratio * height
+            return CGSize(width: width, height: height)
+        })
+    }
+
     /// The screen dimension in centimeters
-    static let dimensionInCentimeters: CGSize? = computeIfSome(optional: pixelsPerCentimeter, computation: { CGSize(width: main.nativeBounds.width / $0, height: main.nativeBounds.height / $0) })
+    static var dimensionInCentimeters: CGSize? { computeIfSome(optional: pixelsPerCentimeter, computation: { CGSize(width: current.nativeBounds.width / $0, height: current.nativeBounds.height / $0) }) }
     
 }

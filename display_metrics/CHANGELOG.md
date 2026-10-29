@@ -1,3 +1,6 @@
+## 2.6.0
+* Added iPhone Duo support (foldable, inner and outer display)
+
 ## 2.5.0
 * Added Fall 2026 Apple devices support:
   * iPhone 18 Pro

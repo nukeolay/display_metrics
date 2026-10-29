@@ -1,3 +1,8 @@
+## 1.6.0
+* Added iPhone Duo device mapping (foldable: 7.6" inner and 5.4" outer display)
+* Screen metrics are now computed on every call instead of once, so they follow the active display of foldable devices
+* On the iPhone Duo, screen metrics use the screen of the foreground app scene, because `UIScreen.main` keeps reporting the outer display (all other devices still use `UIScreen.main`)
+
 ## 1.5.0
 * Added Fall 2026 device mappings:
   * iPhone 18 Pro

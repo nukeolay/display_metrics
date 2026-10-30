@@ -1,3 +1,8 @@
+## 1.6.0
+* Added **IosUnknownDisplayInfo** class (extends **UnknownDisplayInfo** with model identifier)
+* Unknown devices are reported via *getDisplaysReport* as **IosUnknownDisplayInfo** instead of being dropped
+* Added *getModelIdentifier* method channel call
+
 ## 1.5.0
 * Added Fall 2026 device mappings:
   * iPhone 18 Pro

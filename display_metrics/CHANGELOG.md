@@ -1,3 +1,11 @@
+## 2.6.0
+* Added *onUnknownDisplay* callback to **DisplayMetricsWidget** to provide the diagonal of displays unknown to the package ([#35](https://github.com/nukeolay/display_metrics/issues/35), [#37](https://github.com/nukeolay/display_metrics/issues/37))
+* Unknown devices no longer cause an uncaught error on app startup
+* Load error now names the unknown device (iOS model identifier)
+* Display metrics are reloaded when the physical window size changes (e.g. foldable devices)
+* iPhone Duo (`iPhone19,4`) is not built in yet — provide its diagonal via *onUnknownDisplay* (see README)
+* **DisplayMetricsWidget** now calls *DisplayMetricsPlatform.getDisplaysReport* instead of *getDisplays*. Test mocks that `implements DisplayMetricsPlatform` (e.g. with mocktail) must stub *getDisplaysReport* too
+
 ## 2.5.0
 * Added Fall 2026 Apple devices support:
   * iPhone 18 Pro

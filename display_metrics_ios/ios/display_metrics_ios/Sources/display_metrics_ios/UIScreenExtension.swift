@@ -44,8 +44,10 @@ public extension UIScreen {
         return main
     }
 
-    /// Native long side in pixels of the iPhone Duo outer (1398x2034 px) and inner (2007x2853 px) display
-    private static let iPhoneDuoNativeLongSides: Set<CGFloat> = [2034, 2853]
+    /// Native long side in pixels of the iPhone Duo outer (1398x2034 px) and inner display
+    /// (1878x2670 px per Apple specs, 2007x2853 px in the simulator; which one `nativeBounds`
+    /// reports on a real device is unverified, so both are accepted)
+    private static let iPhoneDuoNativeLongSides: Set<CGFloat> = [2034, 2670, 2853]
 
     /// The longer side of the native screen bounds in pixels
     private var nativeLongSide: CGFloat { max(nativeBounds.width, nativeBounds.height) }
@@ -193,7 +195,8 @@ public extension UIScreen {
             return 12.9
 
         case "iPhone19,4":                                                 // iPhone Duo (foldable)
-            // inner display: 7.6" (2007x2853 px), outer display: 5.4" (1398x2034 px)
+            // inner display: 7.6" (1878x2670 px per Apple specs, 2007x2853 px in the simulator),
+            // outer display: 5.4" (1398x2034 px)
             return current.nativeLongSide > 2034 ? 7.6 : 5.4
 
         default:                                                           // unknown model identifier

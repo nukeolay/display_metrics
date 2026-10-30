@@ -1,5 +1,5 @@
 ## 1.7.0
-* Added iPhone Duo device mapping (foldable: 7.6" inner and 5.4" outer display)
+* Added iPhone Duo device mapping (foldable: 7.6" inner and 5.4" outer display) (thanks @Tilmanfs95, [#39](https://github.com/nukeolay/display_metrics/pull/39))
 * Screen metrics are now computed on every call instead of once, so they follow the active display of foldable devices
 * On the iPhone Duo, screen metrics use the screen of the foreground app scene, because `UIScreen.main` keeps reporting the outer display (all other devices still use `UIScreen.main`)
 

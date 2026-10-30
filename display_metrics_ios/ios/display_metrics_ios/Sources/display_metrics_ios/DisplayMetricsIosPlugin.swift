@@ -30,6 +30,8 @@ public class DisplayMetricsIosPlugin: NSObject, FlutterPlugin {
         case "getResolution":
             let resolution = getResolution()
             result(resolution)
+        case "getModelIdentifier":
+            result(UIDevice.modelIdentifier)
         default:
             result(FlutterMethodNotImplemented)
         }

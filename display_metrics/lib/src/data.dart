@@ -11,7 +11,7 @@ class DisplayMetricsData {
   /// List of all available displays metrics
   final List<ExtendedPhysicalDisplayData> displays;
 
-  /// Display metrics data of promary display
+  /// Display metrics data of primary display
   ExtendedPhysicalDisplayData get primaryDisplay => displays.firstWhere(
         (display) => display.isPrimary,
       );

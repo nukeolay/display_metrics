@@ -39,4 +39,14 @@ abstract class DisplayMetricsPlatform extends PlatformInterface {
 
   /// Method to get all available display physical data
   Future<List<PhysicalDisplayData>> getDisplays();
+
+  /// Method to get all available displays including ones with unknown
+  /// physical size. Default implementation reports only [getDisplays] result.
+  ///
+  /// Implementations add a display to [DisplaysReport.unknown] only when its
+  /// resolution is known, otherwise the display is skipped.
+  /// Exactly one display among [DisplaysReport.known] and
+  /// [DisplaysReport.unknown] should be primary
+  Future<DisplaysReport> getDisplaysReport() async =>
+      DisplaysReport(known: await getDisplays());
 }

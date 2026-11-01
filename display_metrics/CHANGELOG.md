@@ -1,3 +1,6 @@
+## 2.7.0
+* Added iPhone Duo support (foldable, inner and outer display) (thanks @Tilmanfs95, [#39](https://github.com/nukeolay/display_metrics/pull/39))
+
 ## 2.6.0
 * Added *onUnknownDisplay* callback to **DisplayMetricsWidget** to provide the diagonal of displays unknown to the package ([#35](https://github.com/nukeolay/display_metrics/issues/35), [#37](https://github.com/nukeolay/display_metrics/issues/37))
 * Unknown devices no longer cause an uncaught error on app startup

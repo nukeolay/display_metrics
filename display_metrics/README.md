@@ -67,7 +67,7 @@ metrics.devicePixelRatio => double
 // List of all available displays metrics
 metrics.displays => List<ExtendedPhysicalDisplayData>
 
-// Display metrics data of promary display
+// Display metrics data of primary display
 metrics.primaryDisplay => ExtendedPhysicalDisplayData
 ```
 
@@ -96,6 +96,33 @@ DisplayMetricsWidget(
   child: child,
 );
 ```
+
+### Unknown displays
+
+New devices may be released after the package version you use, so their physical size is unknown to the package. Use `onUnknownDisplay` to provide the diagonal (in inches) yourself without waiting for a package update. Physical size and PPI are calculated from the diagonal and the display resolution.
+
+```dart
+// diagonals (in inches) of devices released after your package version
+const myDiagonals = {'iPhone20,1': 6.3};
+
+DisplayMetricsWidget(
+  onUnknownDisplay: (info) {
+    if (info case IosUnknownDisplayInfo(:final modelIdentifier)) {
+      return myDiagonals[modelIdentifier];
+    }
+    return null;
+  },
+  child: child,
+);
+```
+
+Please note:
+* `info` fields depend on the platform. On iOS it is `IosUnknownDisplayInfo` with the device model identifier (e.g. `iPhone20,1`). Currently only iOS reports unknown displays.
+* `info.resolution` is the resolution of the display the app is currently shown on (on iOS 13+ the screen of the foreground app scene), so for an unknown foldable device you can pick the diagonal by it.
+* The callback is called for every unknown display on every display metrics update, so it should be cheap and free of side effects.
+* If the callback returns `null` (or is not provided) during initial load, no data is available: `DisplayMetrics.maybeOf(context)` returns `null` and `DisplayMetrics.ensureInitialized(context)` completes with an error that names the device.
+* If the callback returns `null` after the display has changed (for example a foldable device was unfolded), `DisplayMetrics.of(context)` keeps returning **the previous display's data** and an error is logged.
+* Exceptions thrown by the callback are reported with `FlutterError.reportError` (so they reach `FlutterError.onError`, e.g. your crash reporting) once per display, and the display is treated as unknown.
 
 ## Supported Platforms
 

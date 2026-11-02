@@ -16,7 +16,7 @@ public class DisplayMetricsIosPlugin: NSObject, FlutterPlugin {
     }
     
     func getResolution() -> [String: CGFloat] {
-        let screenRect = UIScreen.main.nativeBounds
+        let screenRect = UIScreen.current.nativeBounds
         let screenWidth = screenRect.size.width
         let screenHeight = screenRect.size.height
         return ["width": screenWidth, "height": screenHeight]
@@ -30,6 +30,8 @@ public class DisplayMetricsIosPlugin: NSObject, FlutterPlugin {
         case "getResolution":
             let resolution = getResolution()
             result(resolution)
+        case "getModelIdentifier":
+            result(UIDevice.modelIdentifier)
         default:
             result(FlutterMethodNotImplemented)
         }

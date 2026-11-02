@@ -1,3 +1,7 @@
+## 1.2.0
+* Added **UnknownDisplayInfo** and **DisplaysReport** classes
+* Added *getDisplaysReport* method (non-breaking: default implementation is based on *getDisplays*)
+
 ## 1.1.0
 * Multi-display, foldable devices support
 * Added *getDisplays* method

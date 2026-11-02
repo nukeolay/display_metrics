@@ -1,3 +1,14 @@
+## 1.7.0
+* Added iPhone Duo device mapping (foldable: 7.6" inner and 5.4" outer display) (thanks @Tilmanfs95, [#39](https://github.com/nukeolay/display_metrics/pull/39))
+* Screen metrics are now computed on every call instead of once, so they follow the active display of foldable devices
+* On the iPhone Duo, screen metrics use the screen of the foreground app scene, because `UIScreen.main` keeps reporting the outer display
+* Devices missing from the device table (e.g. a new foldable) also use the screen of the foreground app scene, so *onUnknownDisplay* receives the resolution of the active display (all other devices still use `UIScreen.main`)
+
+## 1.6.0
+* Added **IosUnknownDisplayInfo** class (extends **UnknownDisplayInfo** with model identifier)
+* Unknown devices are reported via *getDisplaysReport* as **IosUnknownDisplayInfo** instead of being dropped
+* Added *getModelIdentifier* method channel call
+
 ## 1.5.0
 * Added Fall 2026 device mappings:
   * iPhone 18 Pro
